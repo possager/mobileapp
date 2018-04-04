@@ -302,7 +302,7 @@ class thepaper(Spider):
 
     def deal_content_Movie(self,response):
         metadata=response.meta['pre_data']
-        
+
 
     def deal_comments(self,response):
         metadata=response.meta['pre_data']
