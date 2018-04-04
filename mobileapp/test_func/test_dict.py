@@ -1,0 +1,11 @@
+this1={
+    'address':'1',
+    'name':'zhangsan'
+}
+this2={
+    'name':'jack',
+    'age':19,
+    'famale':'yes'
+}
+this1.update(this2)
+print(this1)
