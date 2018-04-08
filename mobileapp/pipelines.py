@@ -18,12 +18,24 @@ class MobileappPipeline(object):
 
     def process_item(self, item, spider):
         def save_data(file_path, file, full_data):  # 因为后来要用到存储的时候的文件名，先要调用里边的文件名，所以生成文件名和爬取数据结果应该分开写。
-            if os.path.exists(file_path):
-                with open(file, 'w+') as cmfl:
+
+            publish_date=file.split(' ')[0]
+            filename=full_data['appname']+'_'+full_data['urlmd5']
+
+
+            file_path_new=file_path+'/'+publish_date
+            file_path_and_name=file_path_new+'/'+filename
+
+
+
+
+
+            if os.path.exists(file_path_new):
+                with open(file_path_and_name, 'w+') as cmfl:
                     json.dump(full_data, cmfl)
             else:
-                os.makedirs(file_path)
-                with open(file, 'w+') as cmfl:
+                os.makedirs(file_path_new)
+                with open(file_path_and_name, 'w+') as cmfl:
                     json.dump(full_data, cmfl)
 
 
@@ -38,3 +50,8 @@ class setDefaultPipeline(object):
         for itemkey in item.fields:
             item.setdefault(itemkey,None)
         return item
+
+
+class testpipelineNum(object):
+    def process_item(self,item,spider):
+        print('has got one itme',item['url'])

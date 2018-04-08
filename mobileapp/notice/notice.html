@@ -17,7 +17,10 @@
             所有的模块
         </h3>
         <p>
-            应当统一添加数据规范化处理模块，所以最后存储的时候应当调用一个规范化功能的函数。
+            应当统一添加数据规范化处理模块，所以最后存储的时候应当调用一个规范化功能的函数。规范化成item中的字段格式
+        </p>
+        <p>
+            注意字段中的数据类型，比如reply_count应当是int类型，而不是string。
         </p>
     </div>
 
@@ -28,7 +31,19 @@
     </div>
 
 </div>
-
+<div class="ui vertical masthead aligned segment">
+    <div class="ui middle aligned stackable grid container">
+        <div class="html ui top attached segment">
+            <div class="ui bulleted list">
+                <div class="item">
+                    <h2 style="color: red">
+                        即时：注意事项
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="ui vertical masthead aligned segment">
         <div class="ui middle aligned stackable grid container">
             <div class="html ui top attached segment">
@@ -45,8 +60,24 @@
                                 视频中的id，不是board某一个新闻标题下的id，而是具体连接后的以"_"开头的数字，因为后边要根据这个字段的值来请求评论。
                             </div>
                             <div class="item">
-                                
+                                突发问题，请求中，里边请求链接本来应该先在board_next中处理一下，但是在yield请求的时候，发现callback设置错误，导致有些board中并没有按照设置的来顺序来处理。有些boardlist的请求时针对网页版的，版面和app版的不一样，不过应该只是在这个地方有差别。article和movie的都有问题。实际情况是请求的response中没有结果。
                             </div>
+                            <div class="item">
+                                reply_count中有3.1k这种写法。注意转数字
+                            </div>
+                            <div class="item">
+                                注意字典用法的update，update用法中谁update谁？不过用新数据update旧数据，那么就数据会覆盖新数据，所以会出现：经过content处理函数处理过后的字典，最终url不是这个content的，而是board的。所以应当是metadata.update(new_dict)这种比较多
+                            </div>
+                            <div class="item">
+                                img_urls里边有错误，没有前边的host。
+                            </div>
+                            <div class="item">
+                                一个包含视频的新闻：http://www.thepaper.cn/newsDetail_forward_2063366。不是来自于视频板块的。
+                            </div>
+                            <div class="item">
+                                回复数中，在boardList中抓到的回复数并不是真的回复数，这里边把每一个like_count也算上了，所以reply_count会远远大于实际的reply_count
+                            </div>
+
                         </div>
                     </div>
                 </div>

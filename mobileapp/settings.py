@@ -65,7 +65,8 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'mobileapp.pipelines.MobileappPipeline': 300,
+   # 'mobileapp.pipelines.MobileappPipeline': 300,
+   'mobileapp.pipelines.testpipelineNum':301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

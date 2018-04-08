@@ -11,6 +11,19 @@ from scrapy.loader.processors import TakeFirst
 
 class MobileappItem(scrapy.Item):
 
+
+    #app项目中独有的字段
+    appname=scrapy.Field()
+    user_from=scrapy.Field()
+    channelName=scrapy.Field()
+    channelId=scrapy.Field()
+    publicTimestamp=scrapy.Field()#public是什么鬼？10位的时间戳
+    urlmd5=scrapy.Field()
+
+
+
+
+
     title = scrapy.Field()  # 标题
     content = scrapy.Field()  # 去噪后的存文本内容
     spider_time = scrapy.Field()  # 爬虫爬取时间
@@ -18,6 +31,7 @@ class MobileappItem(scrapy.Item):
     id = scrapy.Field()  # 在平台中的言论ID（如果是回复的话，有就填，没有就不填）
     publish_user = scrapy.Field()  # 用户名-----------------------------------------------------------------------------!!!!!
     url = scrapy.Field()  # （论坛的URL）||（论坛回复的URL）||（新闻的URL）
+
 
     img_urls = scrapy.Field()  # 图片urls,string数组类型
     publish_user_id = scrapy.Field()  # 用户id

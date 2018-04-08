@@ -7,7 +7,7 @@ import datetime
 from datetime import timedelta
 import json
 from mobileapp.other_module.standardization import standard
-
+import copy
 
 
 
@@ -20,11 +20,6 @@ class thepaper(Spider):
 
     brownser_headers={
         'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Mobile Safari/537.36',
-        'Host': 'm.thepaper.cn',
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'zh-CN,zh;q=0.9',
-        'Connection': 'close',
-        'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
     }
     mobile_app_headers={
         'User-Agent': 'oneplus_a3010_android',
@@ -48,38 +43,38 @@ class thepaper(Spider):
                     'appname':'thepaper',
                     'channelName':'视频'
                 },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25953',
-                    'channelId': 'channel_25953',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '生活'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25951',
-                    'channelId': 'channel_25951',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '财经'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25950',
-                    'channelId': 'channel_25950',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '时事'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25952',
-                    'channelId': 'channel_25952',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '思想'
-                },
+                # {
+                #     'url': 'http://m.thepaper.cn/channel_25953',
+                #     'channelId': 'channel_25953',
+                #     'abstract': None,
+                #     'params': None,
+                #     'appname': 'thepaper',
+                #     'channelName': '生活'
+                # },
+                # {
+                #     'url': 'http://m.thepaper.cn/channel_25951',
+                #     'channelId': 'channel_25951',
+                #     'abstract': None,
+                #     'params': None,
+                #     'appname': 'thepaper',
+                #     'channelName': '财经'
+                # },
+                # {
+                #     'url': 'http://m.thepaper.cn/channel_25950',
+                #     'channelId': 'channel_25950',
+                #     'abstract': None,
+                #     'params': None,
+                #     'appname': 'thepaper',
+                #     'channelName': '时事'
+                # },
+                # {
+                #     'url': 'http://m.thepaper.cn/channel_25952',
+                #     'channelId': 'channel_25952',
+                #     'abstract': None,
+                #     'params': None,
+                #     'appname': 'thepaper',
+                #     'channelName': '思想'
+                # },
 
             ]
             for one_task in task_list[:1]:
@@ -163,7 +158,7 @@ class thepaper(Spider):
         def deal_url(id):
             return 'http://m.thepaper.cn/'+id
 
-        for one_article in response.xpath('.//div[@class="t_news"]'):
+        for one_article in response.xpath('.//div[@class="t_news"]').extract():
             title=one_article.xpath('.//div[@class="txt_t"]/div[@class="news_tit02"]/p/a/text()').extract_first(default='')
             article_id_raw=one_article.xpath('.//div[@class="txt_t"]/div[@class="news_tit02"]/p/a/@href').extract_first(default=None)
             publish_time_raw=one_article.xpath('.//div[@class="txt_t"]//p[@class="news_info"]/span[@class="news_time bgimg_time"]/text()').extract_first(default='')
@@ -184,12 +179,13 @@ class thepaper(Spider):
                 'reply_count':reply_count,
                 'publish_time':publish_time_dealed
             }
-            data_in_board.update(metadata)
+            # data_in_board.update(metadata)
+            metadata.update(data_in_board)
 
-            yield scrapy.Request(url=url,headers=self.brownser_headers,meta={'pre_data':data_in_board},callback=self.deal_content_Article)
+            yield scrapy.Request(url=url,headers=self.brownser_headers,meta={'pre_data':metadata},callback=self.deal_content_Article)
 
     def deal_board_Movie(self,response):
-        metadata=response.meta
+        metadata=response.meta['pre_data']
 
 
         def deal_publish_time(publish_time_raw):
@@ -222,7 +218,10 @@ class thepaper(Spider):
             return url_raw.split('_')[-1]
 
 
-        for one_article in response.xpath('.//div[@class="news_li"]'):
+        marknum=1
+
+        request_list=[]
+        for one_article in response.xpath('//div[@class="news_li"]'):
             title = one_article.xpath('.//h2/a[@id]/text()').extract_first(
                 default='')
             url_raw=one_article.xpath('.//h2/a/@href').extract_first(default=None)
@@ -240,16 +239,26 @@ class thepaper(Spider):
             data_in_board={
                 'title':title,
                 'id':deal_id(url_raw),
-                'url':url,
+                'url':copy.copy(url),
                 'publish_time':publish_time,
                 'reply_count':reply_count
             }
-            data_in_board.update(metadata)
+            # data_in_board.update(metadata)
+            metadata.update(data_in_board)
+            request1= scrapy.Request(url=copy.copy(url), headers=self.brownser_headers,
+                                      meta={'pre_data': metadata,'mark_num':marknum},
+                                      callback=self.deal_content_Movie)
+            print(url)
+            print(metadata)
+
+            request_list.append(request1)
+            marknum+=1
+
+        for one_request in request_list:
+            yield one_request
 
 
-            yield scrapy.Request(url=url, headers=self.mobile_app_headers,
-                                      meta={'pre_data': data_in_board},
-                                      callback=self.deal_comments)
+
 
     def deal_content_Article(self,response):
         metadata=response.meta['pre_data']
@@ -275,6 +284,9 @@ class thepaper(Spider):
             post_data['c']=comment_data['id']
             return post_data
 
+        def deal_like_count(like_count_raw):
+            return int(like_count_raw[0]) if like_count_raw else 0
+
 
 
         content=response.xpath('//div[@class="news_content"]/div[@class="news_part_father"]').extract_first()
@@ -282,9 +294,11 @@ class thepaper(Spider):
         publish_user=response.xpath('//div[@class="news_content"]//p[@class="about_news" and not(@style)]/text()').extract_first(default='')
         img_urls=response.xpath('//div[@class="news_content"]//img/@src')
         video_urls=response.xpath('//div[@class="news_content"]//source/@src')
+        like_count_raw = response.xpath('//a[@id="news_praise"]/text()').re('\d+')
 
 
         publish_time=deal_publish_time(publish_time_raw)
+        like_count=deal_like_count(like_count_raw)
 
 
         article_data={
@@ -292,8 +306,10 @@ class thepaper(Spider):
             'publish_time':publish_time,
             'publish_user':publish_user,
             'img_urls':img_urls,
-            'video_urls':video_urls
+            'video_urls':video_urls,
+            'like_count':like_count
         }
+        # article_data.update
         metadata.update(article_data)
         url_cmt = 'http://app.thepaper.cn/clt/jsp/v3/contFloorCommentList.jsp'
         formdata=deal_comments_urls(metadata)
@@ -302,6 +318,79 @@ class thepaper(Spider):
 
     def deal_content_Movie(self,response):
         metadata=response.meta['pre_data']
+
+
+        def deal_like_count(like_count_raw):
+            return int(like_count_raw[0]) if like_count_raw else 0
+
+        def deal_comments_urls(comment_data):
+            post_data = {
+                'WD-UUID': '861557177515977',
+                'WD-CLIENT-TYPE': '04',
+                'WD-UA': 'oneplus_a3010_android',
+                'WD-VERSION': '4.4.6',
+                'WD-CHANNEL': '360sjzs',
+                'WD-RESOLUTION': '720*1256',
+                'userId': '2704158',
+                'WD-TOKEN': 'd2d2344c928de46787d06b6574c9fea0',
+            }
+            post_data['c']=comment_data['id']
+            return post_data
+
+        def deal_publish_time(publish_time_raw):
+            if type(publish_time_raw) ==type([]):
+                return str(publish_time_raw[0])+':00'#经过re正则匹配到的，字符串的前半部分一定是满足条件的
+            elif type(publish_time_raw)==type(''):
+                return str(publish_time_raw)+':00'
+            else:
+                return publish_time_raw
+
+        def deal_img_urls(img_urls_raw):
+            img_urls =[]
+            for one_img_url in img_urls_raw:
+                if 'http' not in one_img_url:
+                    img_urls.append('http:'+one_img_url)
+                else:
+                    img_urls.append(one_img_url)
+
+
+        # def deal_reply_count(reply_count_raw):
+        #     if 'k' in reply_count_raw:
+        #         reply_count_num=reply_count_raw.strip('k')
+        #         return float(reply_count_num)*1000
+        #     else:
+        #         return int(reply_count_raw)
+
+        content=response.xpath('//div[@class="news_content"]').extract_first(default='')
+        publish_time=response.xpath('//div[@class="news_video_name"]').re('\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}')
+        img_urls=response.xpath('//div[@class="news_content"]//img/@src').extract()
+        video_urls=response.xpath('//video/source/@src').extract()
+        like_count_raw=response.xpath('//a[@id="news_praise"]/text()').re('\d+')
+
+
+        like_count=deal_like_count(like_count_raw)
+        publish_time=deal_publish_time(publish_time)
+        img_urls=deal_img_urls(img_urls)
+
+
+        movie_data={
+            'content':content,
+            'publish_time':publish_time,
+            'img_urls':img_urls,
+            'video_urls':video_urls,
+            'like_count':like_count,
+            'reply_nodes':[]
+        }
+        # movie_data.update(metadata)
+        metadata.update(movie_data)
+
+        url_cmt = 'http://app.thepaper.cn/clt/jsp/v3/contFloorCommentList.jsp'
+        formdata = deal_comments_urls(metadata)
+
+
+        print('has yield one requests to deal_comment',metadata['url'])
+        return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
+
 
 
     def deal_comments(self,response):
@@ -349,7 +438,7 @@ class thepaper(Spider):
             publish_user_photo = one_cmt['userInfo']['pic']
             ancestor_id = one_cmt['contId']  #
             parent_id = one_cmt['parentId']
-            # print one_cmt['']
+
 
 
 
@@ -371,6 +460,8 @@ class thepaper(Spider):
 
 
         if next_cmt_url:
-            return scrapy.FormRequest(url=next_cmt_url,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata},callback=self.deal_comments)
+            yield scrapy.FormRequest(url=next_cmt_url,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
         else:
-            return standard(metadata)
+            # print('has finished one----',metadata['url'])
+            # yield standard(metadata)
+            yield metadata
