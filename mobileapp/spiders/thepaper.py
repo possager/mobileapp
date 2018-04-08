@@ -222,6 +222,7 @@ class thepaper(Spider):
 
         request_list=[]
         for one_article in response.xpath('//div[@class="news_li"]'):
+            metadata_in_for=copy.copy(metadata)
             title = one_article.xpath('.//h2/a[@id]/text()').extract_first(
                 default='')
             url_raw=one_article.xpath('.//h2/a/@href').extract_first(default=None)
@@ -244,17 +245,17 @@ class thepaper(Spider):
                 'reply_count':reply_count
             }
             # data_in_board.update(metadata)
-            metadata.update(data_in_board)
+            metadata_in_for.update(data_in_board)
             request1= scrapy.Request(url=copy.copy(url), headers=self.brownser_headers,
-                                      meta={'pre_data': metadata,'mark_num':marknum},
+                                      meta={'pre_data': metadata_in_for,'mark_num':marknum},
                                       callback=self.deal_content_Movie)
             print(url)
-            print(metadata)
+            print(metadata_in_for)
 
             request_list.append(request1)
             marknum+=1
 
-        for one_request in request_list:
+        for x,one_request in enumerate(request_list):
             yield one_request
 
 
@@ -389,7 +390,7 @@ class thepaper(Spider):
 
 
         print('has yield one requests to deal_comment',metadata['url'])
-        return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
+        return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments)
 
 
 
