@@ -39,6 +39,15 @@
                     <h2 style="color: red">
                         即时：注意事项
                     </h2>
+                    <div class="ui bulleted list">
+                        <div class="item">
+                            像澎湃新闻里边的那种没有抓取到内容的评论，应该舍弃掉，所以应该有一个单独的模块，在数据的流的最末端，做一个判断，如果不合适就舍弃，并log记录之。
+                        </div>
+                        <div class="item">
+                            spider_time统一在最后添加。
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -54,7 +63,11 @@
                         </h2>
                         <div class="list">
                             <div class="item">
+                                <a class="ui label">
+                                    完成
+                                </a>
                                 可能video_urls有问题
+
                             </div>
                             <div class="item">
                                 视频中的id，不是board某一个新闻标题下的id，而是具体连接后的以"_"开头的数字，因为后边要根据这个字段的值来请求评论。
@@ -77,7 +90,21 @@
                             <div class="item">
                                 回复数中，在boardList中抓到的回复数并不是真的回复数，这里边把每一个like_count也算上了，所以reply_count会远远大于实际的reply_count
                             </div>
+                            <div class="item">
+                                http://m.thepaper.cn/newsDetail_forward_2040309，这个链接里边的内容是文章类型，但是并不适用其它的一般的xpath文章规则。
+                            </div>
 
+                        </div>
+                        <h2>
+                            jiemian
+                        </h2>
+                        <div class="list">
+                            <div class="item">
+                                在处理content字段的函数中，里边返回的json数据，包含了content，而且是html格式的。content_dealed = content_response_json.unquote(content_raw)；这个方法可以解析出内容。
+                            </div>
+                            <div class="item">
+
+                            </div>
                         </div>
                     </div>
                 </div>

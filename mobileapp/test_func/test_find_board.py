@@ -1,20 +1,19 @@
-import pymongo
 import requests
-import re
+import json
+
+
+url='http://api.hqtime.huanqiu.com/api/news/list/general/'+'comment'
 
 
 
+headers = {
+    'User-Agent': 'okhttp/3.4.1',
+    'Host': 'api.hqtime.huanqiu.com',
+    'content-type': 'application/json',
+    'clientversion': 'v1',
+    'accept': 'application/vnd.hq_time.v1+json',}
 
-mongoclient=pymongo.MongoClient('178.16.7.86',27017)
-COL=mongoclient['news']
-DCO=COL['channellist']
-
-mongofind=DCO.find({'appName':'thepaper','recommend':{'$gt':0}})
-url=mongofind[0]['url']
-
-
-response1=requests.get(url=url)
-# print(response1.text)
-Re_pattern = re.compile(r'data	:	\"(.*?)\".*?Math\.random\b')
-datare = Re_pattern.findall(response1.text)
-print(datare)
+respons1=requests.get(url=url,headers=headers)
+data_json=respons1.json()
+print(data_json)
+pass
