@@ -46,6 +46,9 @@
                         <div class="item">
                             spider_time统一在最后添加。
                         </div>
+                        <div class="item">
+                            临时添加了params这个字段，之前数据库里边一直没有
+                        </div>
                     </div>
 
                 </div>
@@ -103,7 +106,32 @@
                                 在处理content字段的函数中，里边返回的json数据，包含了content，而且是html格式的。content_dealed = content_response_json.unquote(content_raw)；这个方法可以解析出内容。
                             </div>
                             <div class="item">
+                                澎湃只有前20条评论，抓不到更多的。~~~
+                            </div>
+                        </div>
+                        <h2>
+                            huanqiu
+                        </h2>
+                        <div class="list">
+                            <div class="item">
+                                个别时候，比如返回的数据的第二组（可能是热门或者推荐之类的），会没有reply_count字段，所以全部设置成0，最后再再pipeline中集中处理。
+                            </div>
+                            <div class="item">
+                                环球时代 满天名没有爬取视频这个板块，所以就没有视频。。。。。。干得漂亮！！！！你这么放肆好不好,所以所有的板块我都没有添加video_urls处理函数。
+                            </div>
+                            <div class="item">
+                                满天名没有抓评论！！！
+                            </div>
 
+
+
+                        </div>
+                        <h2>
+                            今日头条
+                        </h2>
+                        <div class="list">
+                            <div class="item">
+                                今日头条还是抓取手机网页版，因为反正不管什么版本，它的内容都会变化，不是固定的。也就是说重复请求可能会有重复的，所以今日头条的爬取策略应当适当的多设置一些，爬取频繁一些。
                             </div>
                         </div>
                     </div>

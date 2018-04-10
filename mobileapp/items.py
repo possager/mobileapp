@@ -50,6 +50,7 @@ class MobileappItem(scrapy.Item):
     video_urls = scrapy.Field()  # 视频urls,string数组类型
     is_pic = scrapy.Field()  # 是否包含图片(针对微信)
     dislike_count = scrapy.Field()  # 反对数
+    params=scrapy.Field()
 
 
 class mobileAppUserInfo(scrapy.Field):

@@ -1,15 +1,4 @@
 import requests
 
 
-url1='http://opinion.huanqiu.com/opinion_china/2018-04/11768748.html'
-
-headers={
-    'User-Agent': 'okhttp/3.4.1',
-    'Host': 'api.hqtime.huanqiu.com',
-    'content-type': 'application/json',
-    'clientversion': 'v1',
-    'accept': 'application/vnd.hq_time.v1+json'
-}
-
-reposnse1=requests.get(url=url1)
-print(reposnse1.text)
+response1=requests.get(url='https://m.toutiao.com/list/?tag=__all__&ac=wap&count=20&format=json_raw&as=A1E58ABC5C874AE&cp=5ACC37B48A0EEE1&min_behot_time=0')
