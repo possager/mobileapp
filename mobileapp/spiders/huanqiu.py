@@ -34,71 +34,117 @@ class huanqiu(Spider):
 
     def start_requests(self):
 
-        def get_request_for_debug():
-            task_list=[
-                {
-                    'url':'http://api.hqtime.huanqiu.com/api/news/list/general/comment',
-                    'channelId':'comment',
-                    'abstract':None,
-                    'params':None,
-                    'appname':'huanqiu',
-                    'channelName':'评论'
-                },
-                {
-                    'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/international',
-                    'channelId': 'international',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'huanqiu',
-                    'channelName': '国际'
-                },
-                {
-                    'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/taihai',
-                    'channelId': 'taihai',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'huanqiu',
-                    'channelName': '台海'
-                },
-                {
-                    'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/internal',
-                    'channelId': 'internal',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'huanqiu',
-                    'channelName': '国内'
-                },
-                {
-                    'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/military',
-                    'channelId': 'military',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'huanqiu',
-                    'channelName': '军事'
-                },
-
-            ]
-            for one_task in task_list[:2]:
-                yield scrapy.Request(url=one_task['url'],headers=self.mobile_app_headers,meta={'pre_data':one_task},callback=self.deal_board)
-        for i in get_request_for_debug():
-            yield i
-
-        # client=pymongo.MongoClient('178.16.7.86',27017)
-        # COL=client['news']
-        # DOC=COL['channellist']
+        # def get_request_for_debug():
+        #     task_list=[
+        #         {
+        #             'url':'http://api.hqtime.huanqiu.com/api/news/list/general/comment',
+        #             'channelId':'comment',
+        #             'abstract':None,
+        #             'params':None,
+        #             'appname':'huanqiu',
+        #             'channelName':'评论'
+        #         },
+        #         {
+        #             'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/international',
+        #             'channelId': 'international',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'huanqiu',
+        #             'channelName': '国际'
+        #         },
+        #         {
+        #             'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/taihai',
+        #             'channelId': 'taihai',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'huanqiu',
+        #             'channelName': '台海'
+        #         },
+        #         {
+        #             'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/internal',
+        #             'channelId': 'internal',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'huanqiu',
+        #             'channelName': '国内'
+        #         },
+        #         {
+        #             'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/military',
+        #             'channelId': 'military',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'huanqiu',
+        #             'channelName': '军事'
+        #         },
         #
-        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        # for one_board in mongocfg:
-        #     one_board_info = {
-        #         'url': one_board['url'],
-        #         'channelId': one_board['channelId'],
-        #         'abstract': None,
-        #         'params': None,
-        #         'appname': 'thepaper',
-        #         'channelName': one_board['channelName']
-        #     }
-        #     yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
-        # client.close()
+        #     ]
+        #     for one_task in task_list[:2]:
+        #         yield scrapy.Request(url=one_task['url'],headers=self.mobile_app_headers,meta={'pre_data':one_task},callback=self.deal_board)
+        # for i in get_request_for_debug():
+        #     yield i
+
+        client=pymongo.MongoClient('178.16.7.86',27017)
+        COL=client['news']
+        DOC=COL['channellist']
+
+        task_list=[
+            {
+                'url':'http://api.hqtime.huanqiu.com/api/news/list/general/comment',
+                'channelId':'comment',
+                'abstract':None,
+                'params':None,
+                'appname':'huanqiu',
+                'channelName':'评论'
+            },
+            {
+                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/international',
+                'channelId': 'international',
+                'abstract': None,
+                'params': None,
+                'appname': 'huanqiu',
+                'channelName': '国际'
+            },
+            {
+                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/taihai',
+                'channelId': 'taihai',
+                'abstract': None,
+                'params': None,
+                'appname': 'huanqiu',
+                'channelName': '台海'
+            },
+            {
+                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/internal',
+                'channelId': 'internal',
+                'abstract': None,
+                'params': None,
+                'appname': 'huanqiu',
+                'channelName': '国内'
+            },
+            {
+                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/military',
+                'channelId': 'military',
+                'abstract': None,
+                'params': None,
+                'appname': 'huanqiu',
+                'channelName': '军事'
+            },
+
+        ]
+
+
+
+        mongocfg=DOC.find({'appName':'huanqiuTime','recommend':{'$gt':0}})
+        for one_board in mongocfg:
+            one_board_info = {
+                'url': one_board['url'],
+                'channelId': one_board['channelId'],
+                'abstract': None,
+                'params': None,
+                'appname': 'thepaper',
+                'channelName': one_board['channelName']
+            }
+            yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+        client.close()
 
 
     def deal_board(self,response):

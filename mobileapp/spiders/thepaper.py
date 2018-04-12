@@ -33,71 +33,71 @@ class thepaper(Spider):
 
     def start_requests(self):
 
-        def get_request_for_debug():
-            task_list=[
-                {
-                    'url':'http://m.thepaper.cn/channel_26916',
-                    'channelId':'channel_26916',
-                    'abstract':None,
-                    'params':None,
-                    'appname':'thepaper',
-                    'channelName':'视频'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25953',
-                    'channelId': 'channel_25953',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '生活'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25951',
-                    'channelId': 'channel_25951',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '财经'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25950',
-                    'channelId': 'channel_25950',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '时事'
-                },
-                {
-                    'url': 'http://m.thepaper.cn/channel_25952',
-                    'channelId': 'channel_25952',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'thepaper',
-                    'channelName': '思想'
-                },
-
-            ]
-            for one_task in task_list:
-                yield scrapy.Request(url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_next)
-        for i in get_request_for_debug():
-            yield i
-
-        # client=pymongo.MongoClient('178.16.7.86',27017)
-        # COL=client['news']
-        # DOC=COL['channellist']
+        # def get_request_for_debug():
+        #     task_list=[
+        #         {
+        #             'url':'http://m.thepaper.cn/channel_26916',
+        #             'channelId':'channel_26916',
+        #             'abstract':None,
+        #             'params':None,
+        #             'appname':'thepaper',
+        #             'channelName':'视频'
+        #         },
+        #         {
+        #             'url': 'http://m.thepaper.cn/channel_25953',
+        #             'channelId': 'channel_25953',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'thepaper',
+        #             'channelName': '生活'
+        #         },
+        #         {
+        #             'url': 'http://m.thepaper.cn/channel_25951',
+        #             'channelId': 'channel_25951',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'thepaper',
+        #             'channelName': '财经'
+        #         },
+        #         {
+        #             'url': 'http://m.thepaper.cn/channel_25950',
+        #             'channelId': 'channel_25950',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'thepaper',
+        #             'channelName': '时事'
+        #         },
+        #         {
+        #             'url': 'http://m.thepaper.cn/channel_25952',
+        #             'channelId': 'channel_25952',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'thepaper',
+        #             'channelName': '思想'
+        #         },
         #
-        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        # for one_board in mongocfg:
-        #     one_board_info = {
-        #         'url': one_board['url'],
-        #         'channelId': one_board['channelId'],
-        #         'abstract': None,
-        #         'params': None,
-        #         'appname': 'thepaper',
-        #         'channelName': one_board['channelName']
-        #     }
-        #     yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
-        # client.close()
+        #     ]
+        #     for one_task in task_list:
+        #         yield scrapy.Request(url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_next)
+        # for i in get_request_for_debug():
+        #     yield i
+
+        client=pymongo.MongoClient('178.16.7.86',27017)
+        COL=client['news']
+        DOC=COL['channellist']
+
+        mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
+        for one_board in mongocfg:
+            one_board_info = {
+                'url': one_board['url'],
+                'channelId': one_board['channelId'],
+                'abstract': None,
+                'params': None,
+                'appname': 'thepaper',
+                'channelName': one_board['channelName']
+            }
+            yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
+        client.close()
 
 
 

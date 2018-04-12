@@ -7,12 +7,16 @@
 from mobileapp.items import MobileappItem
 import json
 import os
+import platform
 
 
 
 
+basic_file = 'E:/scrapy_data/'
+if platform.system() == 'Linux':
+    basic_file = '/home/ll_spider2/spider_data_all'
 
-BASIC_FILE='E:/data_ll_all/mobile_app/'
+
 
 class MobileappPipeline(object):
 

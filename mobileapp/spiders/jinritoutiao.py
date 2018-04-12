@@ -40,86 +40,103 @@ class jinritoutiao(Spider):
 
     def start_requests(self):
 
-        def get_request_for_debug():
-            task_list=[
-                {
-                    'url': 'https://m.toutiao.com/list/',
-                    'channelId': 'news_hot',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'jinritoutiao',
-                    'channelName': '热点'
-                },
-                {
-                    'url': 'https://m.toutiao.com/list/',
-                    'channelId': 'news_local',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'jinritoutiao',
-                    'channelName': '成都'
-                },
-                {
-                    'url': 'https://m.toutiao.com/list/',
-                    'channelId': 'news_society',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'jinritoutiao',
-                    'channelName': '社会'
-                },
-                {
-                    'url': 'https://m.toutiao.com/list/',
-                    'channelId': 'news_tech',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'jinritoutiao',
-                    'channelName': '科技'
-                },
-                {
-                    'url': 'https://m.toutiao.com/list/',
-                    'channelId': 'news_finance',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'jinritoutiao',
-                    'channelName': '财经'
-                },
-            ]
-            for one_task in task_list[:1]:
-                as_cp = caculate_as_cp()
-                time_str = str(int(time.time()))
-                url1_dict = {
-                    'tag': 'news_hot',
-                    'ac': 'wap',
-                    'count': '20',
-                    'format': 'json_raw',
-                    'as': as_cp['as'],
-                    'cp': as_cp['cp'],
-                    'max_behot_time': time_str,
-                    # '_signature':'kkyhfgAAyI04Y-H-xSTfTZJMoW',
-                    '_signature': time_str,
-                    'i': time_str
-                }
-
-                yield scrapy.FormRequest(url=one_task['url'], headers=self.brownser_headers, meta={'pre_data': one_task},formdata=url1_dict,
-                                          callback=self.deal_board,method='GET')
-        for i in get_request_for_debug():
-            yield i
-
-        # client=pymongo.MongoClient('178.16.7.86',27017)
-        # COL=client['news']
-        # DOC=COL['channellist']
+        # def get_request_for_debug():
+        #     task_list=[
+        #         {
+        #             'url': 'https://m.toutiao.com/list/',
+        #             'channelId': 'news_hot',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'jinritoutiao',
+        #             'channelName': '热点'
+        #         },
+        #         {
+        #             'url': 'https://m.toutiao.com/list/',
+        #             'channelId': 'news_local',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'jinritoutiao',
+        #             'channelName': '成都'
+        #         },
+        #         {
+        #             'url': 'https://m.toutiao.com/list/',
+        #             'channelId': 'news_society',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'jinritoutiao',
+        #             'channelName': '社会'
+        #         },
+        #         {
+        #             'url': 'https://m.toutiao.com/list/',
+        #             'channelId': 'news_tech',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'jinritoutiao',
+        #             'channelName': '科技'
+        #         },
+        #         {
+        #             'url': 'https://m.toutiao.com/list/',
+        #             'channelId': 'news_finance',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'jinritoutiao',
+        #             'channelName': '财经'
+        #         },
+        #     ]
+        #     for one_task in task_list[:1]:
+        #         as_cp = caculate_as_cp()
+        #         time_str = str(int(time.time()))
+        #         url1_dict = {
+        #             'tag': 'news_hot',
+        #             'ac': 'wap',
+        #             'count': '20',
+        #             'format': 'json_raw',
+        #             'as': as_cp['as'],
+        #             'cp': as_cp['cp'],
+        #             'max_behot_time': time_str,
+        #             # '_signature':'kkyhfgAAyI04Y-H-xSTfTZJMoW',
+        #             '_signature': time_str,
+        #             'i': time_str
+        #         }
         #
-        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        # for one_board in mongocfg:
-        #     one_board_info = {
-        #         'url': one_board['url'],
-        #         'channelId': one_board['channelId'],
-        #         'abstract': None,
-        #         'params': None,
-        #         'appname': 'thepaper',
-        #         'channelName': one_board['channelName']
-        #     }
-        #     yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
-        # client.close()
+        #         yield scrapy.FormRequest(url=one_task['url'], headers=self.brownser_headers, meta={'pre_data': one_task},formdata=url1_dict,
+        #                                   callback=self.deal_board,method='GET')
+        # for i in get_request_for_debug():
+        #     yield i
+
+        client=pymongo.MongoClient('178.16.7.86',27017)
+        COL=client['news']
+        DOC=COL['channellist']
+
+        mongocfg=DOC.find({'appName':'jinritoutiao','recommend':{'$gt':0}})
+        for one_board in mongocfg:
+            as_cp = caculate_as_cp()
+            time_str = str(int(time.time()))
+            url1_dict = {
+                'tag': 'news_hot',
+                'ac': 'wap',
+                'count': '20',
+                'format': 'json_raw',
+                'as': as_cp['as'],
+                'cp': as_cp['cp'],
+                'max_behot_time': time_str,
+                # '_signature':'kkyhfgAAyI04Y-H-xSTfTZJMoW',
+                '_signature': time_str,
+                'i': time_str
+            }
+
+
+            one_board_info = {
+                'url': 'https://m.toutiao.com/list/',
+                'channelId': one_board['channelId'],
+                'abstract': None,
+                'params': None,
+                'appname': 'thepaper',
+                'channelName': one_board['channelName']
+            }
+            yield scrapy.FormRequest(url=one_board_info['url'], headers=self.brownser_headers, meta={'pre_data': one_board_info},
+                                     formdata=url1_dict,callback=self.deal_board,method='GET')
+        client.close()
 
 
 

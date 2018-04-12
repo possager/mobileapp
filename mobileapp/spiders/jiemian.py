@@ -32,71 +32,71 @@ class jiemian(Spider):
 
     def start_requests(self):
 
-        def get_request_for_debug():
-            task_list=[
-                {
-                    'url':'http://appapi.jiemian.com/v4/5.1.0/10001/cate/117/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
-                    'channelId':'117',
-                    'abstract':None,
-                    'params':None,
-                    'appname':'JieMianXinWen',
-                    'channelName':'商业'
-                },
-                {
-                    'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/643/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
-                    'channelId': '643',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'JieMianXinWen',
-                    'channelName': '财经'
-                },
-                {
-                    'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/644/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
-                    'channelId': '644',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'JieMianXinWen',
-                    'channelName': '新闻'
-                },
-                {
-                    'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/123/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
-                    'channelId': '123',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'JieMianXinWen',
-                    'channelName': '科技'
-                },
-                {
-                    'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/138/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
-                    'channelId': '138',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'JieMianXinWen',
-                    'channelName': '汽车'
-                },
-
-            ]
-            for one_task in task_list:
-                yield scrapy.Request(url=one_task['url'],headers=self.mobile_app_headers,meta={'pre_data':one_task},callback=self.deal_board)
-        for i in get_request_for_debug():
-            yield i
-
-        # client=pymongo.MongoClient('178.16.7.86',27017)
-        # COL=client['news']
-        # DOC=COL['channellist']
+        # def get_request_for_debug():
+        #     task_list=[
+        #         {
+        #             'url':'http://appapi.jiemian.com/v4/5.1.0/10001/cate/117/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
+        #             'channelId':'117',
+        #             'abstract':None,
+        #             'params':None,
+        #             'appname':'JieMianXinWen',
+        #             'channelName':'商业'
+        #         },
+        #         {
+        #             'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/643/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
+        #             'channelId': '643',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'JieMianXinWen',
+        #             'channelName': '财经'
+        #         },
+        #         {
+        #             'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/644/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
+        #             'channelId': '644',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'JieMianXinWen',
+        #             'channelName': '新闻'
+        #         },
+        #         {
+        #             'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/123/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
+        #             'channelId': '123',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'JieMianXinWen',
+        #             'channelName': '科技'
+        #         },
+        #         {
+        #             'url': 'http://appapi.jiemian.com/v4/5.1.0/10001/cate/138/0/1/51/5101.json?vid=861557177515977&dv=android&os=4.4.4&rl=720*1280&ac=WIFI',
+        #             'channelId': '138',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'JieMianXinWen',
+        #             'channelName': '汽车'
+        #         },
         #
-        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        # for one_board in mongocfg:
-        #     one_board_info = {
-        #         'url': one_board['url'],
-        #         'channelId': one_board['channelId'],
-        #         'abstract': None,
-        #         'params': None,
-        #         'appname': 'thepaper',
-        #         'channelName': one_board['channelName']
-        #     }
-        #     yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
-        # client.close()
+        #     ]
+        #     for one_task in task_list:
+        #         yield scrapy.Request(url=one_task['url'],headers=self.mobile_app_headers,meta={'pre_data':one_task},callback=self.deal_board)
+        # for i in get_request_for_debug():
+        #     yield i
+
+        client=pymongo.MongoClient('178.16.7.86',27017)
+        COL=client['news']
+        DOC=COL['channellist']
+
+        mongocfg=DOC.find({'appName':'JieMianXinWen','recommend':{'$gt':0}})
+        for one_board in mongocfg:
+            one_board_info = {
+                'url': one_board['url'],
+                'channelId': one_board['channelId'],
+                'abstract': None,
+                'params': None,
+                'appname': 'thepaper',
+                'channelName': one_board['channelName']
+            }
+            yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+        client.close()
 
 
 
