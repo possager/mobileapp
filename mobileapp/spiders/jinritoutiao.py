@@ -139,16 +139,18 @@ class jinritoutiao(Spider):
 
 
         for one_article in board_reponse_json['data']:
+            metadata_in_for=copy.copy(metadata)
+
             title=one_article['title']
             url=one_article['display_url']
             abstract=one_article['abstract']
             reply_count=one_article['comment_count']
             publish_time_raw=one_article['datetime']
             params={
-                'keywords':one_article['keywords'],
-                'source_url':one_article['article_url'],
-                'tag':one_article['tag'],
-                'ban_comment':one_article['ban_comment']
+                'keywords':one_article['keywords'] if 'keywords' in one_article.keys() else None,
+                'source_url':one_article['article_url'] if 'article_url' in one_article.keys() else None,
+                'tag':one_article['tag'] if 'tag' in one_article.keys() else None,
+                'ban_comment':one_article['ban_comment'] if 'ban_comment' in one_article.keys() else None
             }
             source=one_article['source']
             publicTimestamp=one_article['publish_time']
@@ -170,11 +172,11 @@ class jinritoutiao(Spider):
                 'id':_id,
                 'item_id':item_id
             }
-            metadata.update(one_article_dict)
+            metadata_in_for.update(one_article_dict)
 
-            url_for_content=deal_url_for_content(metadata['id'])
+            url_for_content=deal_url_for_content(metadata_in_for['id'])
 
-            yield scrapy.Request(url=url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=self.deal_content)
+            yield scrapy.Request(url=url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata_in_for},callback=self.deal_content)
 
 
 
@@ -238,41 +240,57 @@ class jinritoutiao(Spider):
         metadata=response.meta['pre_data']
 
 
+        def deal_publish_time(publicTimestamp):
+            time_tuple=time.localtime(int(publicTimestamp))
+            time2=time.strftime('%Y-%m-%d %H:%M:%S',time_tuple)
+            return time2
+
+        def deal_commentUrl_next(comment_url):
+            comment_url_splited=comment_url.split('offset=')
+            pageNum=int(comment_url_splited[1])
+            pageNum+=20
+            comment_url_next=comment_url_splited[0]+'offset='+str(pageNum)
+            return comment_url_next
+
 
         datajson = json.loads(response.text)
         has_more=datajson['has_more']
 
 
         if len(datajson['data'])<2:
-            return standard(metadata)
+            stand_data= standard(metadata)
+            print('the urlmd5 is'+stand_data['urlmd5'])
+
+            return stand_data
 
 
         for one_cmt in datajson['data'][1:]:
+            one_cmt=one_cmt['comment']
             id = one_cmt['id']
             content = one_cmt['text']
             reply_count=one_cmt['reply_count']
             params={
                 'bury_count':one_cmt['bury_count'],
-
             }
             publicTimestamp=one_cmt['create_time']
-
-            publish_user_id = one_cmt['']
-            publish_user = one_cmt['userName']
+            publish_user_id = one_cmt['user_id']
+            publish_user = one_cmt['user_name']
             like_count = one_cmt['digg_count']  # like_count
-            publish_time_raw = one_cmt['pubTime']  # publish_time
-            publish_user_photo = one_cmt['userInfo']['pic']
-            ancestor_id = one_cmt['contId']  #
-            parent_id = one_cmt['parentId']
+            publish_user_photo = one_cmt['user_profile_image_url']
+
+
+            ancestor_id = metadata['id']  #
+            parent_id = metadata['id']
 
 
 
 
-            publish_time=deal_publish_time(publish_time_raw)
-            parent_id=deal_parent_id(parent_id,ancestor_id)
+            publish_time=deal_publish_time(publicTimestamp)
+
 
             one_cmt_dict = {
                 'id': id,
+                'publicTimestamp':publicTimestamp,
                 'content': content,
                 'publish_usr_id': publish_user_id,
                 'publish_user': publish_user,
@@ -280,8 +298,18 @@ class jinritoutiao(Spider):
                 'publish_time': publish_time,
                 'publish_user_photo': publish_user_photo,
                 'ancestor_id': ancestor_id,
-                'parent_id': parent_id
+                'parent_id': parent_id,
+                'reply_count':reply_count,
+                'params':params,
             }
             metadata['reply_nodes'].append(one_cmt_dict)
 
+        urlnext=deal_commentUrl_next(response.url)
 
+        if has_more:
+            return scrapy.Request(url=urlnext,meta={'pre_data':metadata},callback=self.deal_comments)
+        else:
+            stand_data = standard(metadata)
+            print('in bottom,the urlmd5 is' + stand_data['urlmd5'])
+            return stand_data
+            # yield standard(metadata)

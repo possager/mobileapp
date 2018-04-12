@@ -49,6 +49,12 @@
                         <div class="item">
                             临时添加了params这个字段，之前数据库里边一直没有
                         </div>
+                        <div class="item">
+                                最终的规范化模块，比如时间戳的处理，可能有问题
+                        </div>
+                        <div class="item">
+                            今天在今日头条中发现，deal_comment的数据return之后，没有进入pipeline中。所以yield和return不能同时使用。
+                        </div>
                     </div>
 
                 </div>
@@ -148,6 +154,10 @@
                             <div class="item">
                                 评论里，请求中有一个has_more可以来判断请求是否结束了。
                             </div>
+                            <div class="item">
+                                所有的评论的数据不一定规范。
+                            </div>
+
                         </div>
                     </div>
                 </div>

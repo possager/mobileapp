@@ -455,8 +455,8 @@ class thepaper(Spider):
 
 
         if next_cmt_url:
-            yield scrapy.FormRequest(url=next_cmt_url,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
+            return scrapy.FormRequest(url=next_cmt_url,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
         else:
             # print('has finished one----',metadata['url'])
-            yield standard(metadata)
+            return standard(metadata)
             # yield metadata
