@@ -41,14 +41,14 @@ class MobileappItem(scrapy.Item):
     read_count = scrapy.Field()  # 阅读量
     like_count = scrapy.Field()  # 赞成数
     publish_user_jsonid = scrapy.Field()  # 用户的jsonid(对应着用户json信息的命名：平台名称（或者英文）_用户id)
-    txpath = scrapy.Field()  # 图片存放服务器(针对微信)
+    # txpath = scrapy.Field()  # 图片存放服务器(针对微信)
     reply_nodes = scrapy.Field()  # jsonArray类型变量,结构和当前json结构一样
     reproduce_count = scrapy.Field()  # 转载数
     ancestor_id = scrapy.Field()  # 祖先借点的ID（回复和回复的回复必填）
     parent_id = scrapy.Field()  # 父集ID（如果是回复就填，没有就不填）
     like_nodes = scrapy.Field()  # jsonArray类型变量，里面的结构和当前json结构一样
     video_urls = scrapy.Field()  # 视频urls,string数组类型
-    is_pic = scrapy.Field()  # 是否包含图片(针对微信)
+    # is_pic = scrapy.Field()  # 是否包含图片(针对微信)
     dislike_count = scrapy.Field()  # 反对数
     params=scrapy.Field()
 

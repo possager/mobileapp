@@ -25,11 +25,12 @@ class huanqiu(Spider):
         'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
     }
     mobile_app_headers={
-    'User-Agent': 'okhttp/3.4.1',
-    'Host': 'api.hqtime.huanqiu.com',
-    'content-type': 'application/json',
-    'clientversion': 'v1',
-    'accept': 'application/vnd.hq_time.v1+json',}
+        'User-Agent': 'okhttp/3.4.1',
+        'Host': 'api.hqtime.huanqiu.com',
+        'content-type': 'application/json',
+        'clientversion': 'v1',
+        'accept': 'application/vnd.hq_time.v1+json',
+    }
 
 
     def start_requests(self):
@@ -87,50 +88,6 @@ class huanqiu(Spider):
         COL=client['news']
         DOC=COL['channellist']
 
-        task_list=[
-            {
-                'url':'http://api.hqtime.huanqiu.com/api/news/list/general/comment',
-                'channelId':'comment',
-                'abstract':None,
-                'params':None,
-                'appname':'huanqiu',
-                'channelName':'评论'
-            },
-            {
-                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/international',
-                'channelId': 'international',
-                'abstract': None,
-                'params': None,
-                'appname': 'huanqiu',
-                'channelName': '国际'
-            },
-            {
-                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/taihai',
-                'channelId': 'taihai',
-                'abstract': None,
-                'params': None,
-                'appname': 'huanqiu',
-                'channelName': '台海'
-            },
-            {
-                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/internal',
-                'channelId': 'internal',
-                'abstract': None,
-                'params': None,
-                'appname': 'huanqiu',
-                'channelName': '国内'
-            },
-            {
-                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/military',
-                'channelId': 'military',
-                'abstract': None,
-                'params': None,
-                'appname': 'huanqiu',
-                'channelName': '军事'
-            },
-
-
-        ]
 
 
 
@@ -141,10 +98,10 @@ class huanqiu(Spider):
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
-                'appname': 'huanqiu',
+                'appname': one_board['appName'],
                 'channelName': one_board['channelName']
             }
-            yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+            yield scrapy.Request(url=one_board_info['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
         client.close()
 
 

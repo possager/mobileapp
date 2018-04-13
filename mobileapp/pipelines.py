@@ -45,7 +45,7 @@ class MobileappPipeline(object):
 
         if isinstance(item,MobileappItem):
             item_dict=dict(item)
-            save_data(file_path=BASIC_FILE+item_dict['appname'],file=item_dict['publish_time'],full_data=item_dict)
+            save_data(file_path=basic_file+item_dict['appname'],file=item_dict['publish_time'],full_data=item_dict)
 
 
 

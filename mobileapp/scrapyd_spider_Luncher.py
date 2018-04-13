@@ -4,7 +4,7 @@ import json
 import time
 
 
-console_url='http://192.168.6.230:6800'
+console_url='http://127.0.0.1:6800'
 
 
 def get_all_spiders():
@@ -85,9 +85,9 @@ def cancel_all_spider_job():
 
 
 if __name__ == '__main__':
-    # get_all_spiders()
-    # start_a_spider_job(spidername='middleway')
+    get_all_spiders()
+    # start_a_spider_job(spidername='huanqiu')
     # cancel_job(jobId='1c2691c032d611e8b1ca30b49e7b08df')
     # get_all_Jobs()
-    cancel_all_spider_job()
-    # start_all_spider()
+    # cancel_all_spider_job()
+    start_all_spider()

@@ -131,7 +131,7 @@ class jinritoutiao(Spider):
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
-                'appname': 'thepaper',
+                'appname': one_board['appName'],
                 'channelName': one_board['channelName']
             }
             yield scrapy.FormRequest(url=one_board_info['url'], headers=self.brownser_headers, meta={'pre_data': one_board_info},

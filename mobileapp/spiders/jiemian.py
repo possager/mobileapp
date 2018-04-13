@@ -92,7 +92,7 @@ class jiemian(Spider):
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
-                'appname': 'thepaper',
+                'appname': one_board['appName'],
                 'channelName': one_board['channelName']
             }
             yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
@@ -103,6 +103,13 @@ class jiemian(Spider):
     def deal_board(self,response):
         metadata=response.meta['pre_data']
 
+
+        def deal_read_count(read_count_raw):
+            if 'w' in read_count_raw:
+                read_count=float(read_count_raw.strip('w'))*10000
+            else:
+                read_count=int(read_count_raw) if read_count_raw else 0
+            return read_count
 
         def deal_reply_count(reply_count_raw):
             if 'w' in reply_count_raw:
@@ -132,15 +139,16 @@ class jiemian(Spider):
             _id= article['ar_id']  # id
             abstract=article['ar_sum']
             title =article['ar_tl']  # title
-            reply_count= article['ar_cmt']  # 评论数
-            read_count= article['ar_hit']  # 点击数
+            reply_count_raw= article['ar_cmt']  # 评论数
+            read_count_raw= article['ar_hit']  # 点击数
             url= article['ar_surl']  # url
             publish_user= article['ar_an']  # publish_user
             publicTimestamp=article['ar_pt']
 
 
             publish_time=deal_publish_time(publicTimestamp)
-            reply_count=deal_reply_count(reply_count)
+            reply_count=deal_reply_count(reply_count_raw)
+            read_count=deal_read_count(read_count_raw)
             one_news_dict={
                 'id':str(_id),
                 'title':str(title),

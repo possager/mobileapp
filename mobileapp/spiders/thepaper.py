@@ -93,7 +93,7 @@ class thepaper(Spider):
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
-                'appname': 'thepaper',
+                'appname': one_board['appName'],
                 'channelName': one_board['channelName']
             }
             yield scrapy.Request(url=one_board['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_next)
