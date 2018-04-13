@@ -1,10 +1,18 @@
-import time
+import requests
 
 
-time1_str='1523389540'
+headers1={
+    'User-Agent': 'okhttp/3.4.1',
+    'Host': 'api.hqtime.huanqiu.com',
+    'content-type': 'application/json',
+    'clientversion': 'v1',
+    'accept': 'application/vnd.hq_time.v1+json',}
 
-timetuple=time.localtime(int(time1_str))
-print(timetuple)
-time2=time.mktime(timetuple)
-print(time2)
-print(time.strftime('%Y-%m-%d %H:%M:%S',timetuple))
+
+url_list='http://api.hqtime.huanqiu.com/api/news/list/general/bigdata'
+
+response1=requests.get(url=url_list,headers=headers1)
+print(response1.text)
+pass
+datajson=response1.json()
+print(datajson)

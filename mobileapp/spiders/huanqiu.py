@@ -129,6 +129,7 @@ class huanqiu(Spider):
                 'channelName': '军事'
             },
 
+
         ]
 
 
@@ -136,11 +137,11 @@ class huanqiu(Spider):
         mongocfg=DOC.find({'appName':'huanqiuTime','recommend':{'$gt':0}})
         for one_board in mongocfg:
             one_board_info = {
-                'url': one_board['url'],
+                'url': 'http://api.hqtime.huanqiu.com/api/news/list/general/'+one_board['channelId'],
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
-                'appname': 'thepaper',
+                'appname': 'huanqiu',
                 'channelName': one_board['channelName']
             }
             yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
