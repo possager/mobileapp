@@ -95,7 +95,7 @@ class jiemian(Spider):
                 'appname': one_board['appName'],
                 'channelName': one_board['channelName']
             }
-            yield scrapy.Request(url=one_board['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+            yield scrapy.Request(url=one_board_info['url'],headers=self.mobile_app_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
         client.close()
 
 
@@ -169,7 +169,7 @@ class jiemian(Spider):
 
 
 
-            yield scrapy.Request(url=content_url,headers=self.mobile_app_headers,meta={'pre_data':one_news_dict},callback=self.deal_content)
+            yield scrapy.Request(url=content_url,headers=self.mobile_app_headers,meta={'pre_data':metadata_in_for},callback=self.deal_content)
 
 
 

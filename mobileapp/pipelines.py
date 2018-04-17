@@ -13,8 +13,9 @@ import platform
 
 
 basic_file = 'E:/scrapy_data/'
+basic_file_org='E:/scrapy_data2'
 if platform.system() == 'Linux':
-    basic_file = '/Liang_Spider/spider_data_store'
+    basic_file = '/Liang_Spider/spider_data_store/'
     basic_file_org='/Liang_Spider/spider_data_org'
 
 

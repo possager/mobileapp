@@ -50,6 +50,8 @@ def standard(data):#将传入进来的字典标准化成item,这个组件功能�
 
     def reSet_reply_count(data):
         try:
+            if 'reply_count' not in data.keys():
+                data['reply_count']=0
             data['params']['replt_count_original']=data['reply_count']
             data['reply_count']=len(data['reply_nodes'])
             return data

@@ -4,8 +4,8 @@ import json
 import time
 
 
-console_url='http://127.0.0.1:6800'
-
+# console_url='http://127.0.0.1:6800'
+console_url='http://178.16.7.121:6800'#remote
 
 def get_all_spiders():
     response1=requests.get(url=console_url+'/listspiders.json?',params={'project':'default'})
