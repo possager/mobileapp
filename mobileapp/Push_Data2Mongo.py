@@ -128,6 +128,8 @@ def scanf_file_org_and_save():
                         return
                 except Exception as e:
                     print(e)
+
+            mongoclient.close()
         else:
             time.sleep(60)
 
