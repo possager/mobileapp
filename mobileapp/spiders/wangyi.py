@@ -13,8 +13,8 @@ import copy
 
 
 
-class sina(Spider):
-    name = 'sina'
+class wangyi(Spider):
+    name = 'wangyi'
 
 
 
@@ -22,7 +22,8 @@ class sina(Spider):
         'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Mobile Safari/537.36',
     }
     mobile_app_headers={
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Mobile Safari/537.36',
+        'User-Agent': 'oneplus_a3010_android',
+        'Host': 'app.thepaper.cn',
         'x-up-bear-type': 'WLAN',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Connection': 'Keep-Alive',
@@ -81,19 +82,14 @@ class sina(Spider):
         # for i in get_request_for_debug():
         #     yield i
 
-        def deal_board_url(news_id):
-            return 'https://cre.dp.sina.cn/api/v3/get?&cre=tianyi&mod='+str(news_id)+'&local_code=sc'
-
-
-
         client=pymongo.MongoClient('178.16.7.86',27017)
         COL=client['news']
         DOC=COL['channellist']
 
-        mongocfg=DOC.find({'appName':'sina','recommend':{'$gt':0}})
+        mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
         for one_board in mongocfg:
             one_board_info = {
-                'url': deal_board_url(one_board['channelId']),
+                'url': one_board['url'],
                 'channelId': one_board['channelId'],
                 'abstract': None,
                 'params': None,
@@ -106,83 +102,86 @@ class sina(Spider):
 
 
     def deal_board(self,response):
-        metadata=response.meta['pre_data']
+        '''
+        :param response:
+        :return: request to be deal ,for getting board info;
+        :notice: the url next to visit for get content is like this:--http://www.thepaper.cn/load_index.jsp?nodeids=26912,26918,26965,26908,27260,26907,26911,26913,26906,26909,26910,26914,26915,26919,&topCids=2051901,2054797,2052136&pageidx=
+                 the "nodeids=26912,26918,26965,26908,27260,26907,26911,26913,26906,26909,26910,26914,26915,26919,&topCids=2051901,2054797,2052136&pageidx=" come from
+                 this board index page,and find by /*re('data	:	\"(.*?)\".*?Math\.random\b')*/;
+        :notice: video's url is deferent from others.the video's url is http://m.thepaper.cn/channel_26916;
+        :notice:
+
+        '''
+
+        data_re_url=response.selector.re('data	:	\"(.*?)\".*?Math\.random')
+        if data_re_url:
+            if 'http://m.thepaper.cn/channel_26916' in response.url:
+                next_url_for_content='http://www.thepaper.cn/load_index.jsp?' + data_re_url[0]
+                next_callback=self.deal_board_Movie
+            else:
+                next_url_for_content = 'http://m.thepaper.cn/load_channel.jsp?' + data_re_url[0]
+                next_callback=self.deal_board_Article
+
+            metadata=response.meta['pre_data']
 
 
-        def deal_publish_time(publicTimestamp_raw):
-            timetuple=time.localtime(int(publicTimestamp_raw))
-            publish_time=time.strftime('%Y-%m-%d %H:%M:%S',timetuple)
-            return publish_time
-
-        datajson=json.loads(response.text)
-
-        for one_aritcle in datajson['data']:
-            metadata_in_for=copy.copy(metadata)
-
-            source=one_aritcle['media'] if 'media' in one_aritcle.keys() else None
-            title=one_aritcle['title'] if 'title' in one_aritcle.keys() else None
-            publicTimestamp=one_aritcle['ctime'] if 'ctime' in one_aritcle.keys() else None
-            url=one_aritcle['url'] if 'url' in one_aritcle.keys() else None
-            abstract=one_aritcle['short_intro'] if 'short_intro' in one_aritcle.keys() else None
-            publish_user_id=one_aritcle['authorId'] if 'authorId' in one_aritcle.keys() else None
-            _id = one_aritcle['_id'] if '_id' in one_aritcle.keys() else None
-            comment_id=one_aritcle['commentid'] if 'commentid' in one_aritcle.keys() else None
-            original_reply_count=one_aritcle['comment_count'] if 'comment_count' in one_aritcle.keys() else 0
-            publish_user= one_aritcle['author'] if 'author' in one_aritcle.keys() else None
-            keywords=one_aritcle['labels_show'] if 'labels_show' in one_aritcle.keys() else None
-            reply_count=one_aritcle['comment_count_show'] if 'comment_count_show' in one_aritcle.keys() else 0
-
-
-            one_article_dict={
-                'source':source,
-                'title':title,
-                'publicTimestamp':publicTimestamp,
-                'url':url,
-                'abstract':abstract,
-                'publish_user_id':publish_user_id,
-                'id':_id,
-                'comment_id':comment_id,
-                'publish_user':publish_user,
-                'params':{
-                    'original_reply_count':original_reply_count,
-                    'keywords':keywords
-                },
-                'publish_time':deal_publish_time(publicTimestamp),
-                'reply_count':reply_count
-            }
-            metadata_in_for.update(one_article_dict)
-            if one_article_dict['url'] and one_article_dict['id']:
-                yield scrapy.Request(url=one_article_dict['url'],headers=self.brownser_headers,meta={'pre_data':one_article_dict},callback=self.deal_content)
-
-
-
+            yield scrapy.Request(url=next_url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=next_callback)
 
     def deal_content(self,response):
         metadata=response.meta['pre_data']
         metadata['reply_nodes']=[]
 
+        def deal_publish_time(publish_time):
+            if publish_time:
+                return str(publish_time[0])+':00'
+            else:
+                return '1111-11-11 11:11:11'
 
-        content=response.xpath('//article[@class="art_box"]').extract_first()
-        img_urls=response.xpath('//article[@class="art_box"]//img/@src').extract()
+        def deal_comments_urls(comment_data):
+            post_data = {
+                'WD-UUID': '861557177515977',
+                'WD-CLIENT-TYPE': '04',
+                'WD-UA': 'oneplus_a3010_android',
+                'WD-VERSION': '4.4.6',
+                'WD-CHANNEL': '360sjzs',
+                'WD-RESOLUTION': '720*1256',
+                'userId': '2704158',
+                'WD-TOKEN': 'd2d2344c928de46787d06b6574c9fea0',
+            }
+            post_data['c']=comment_data['id']
+            return post_data
 
-        if not content:
-            content=response.xpath('//section[@class="card_module"]').extract_first()
-            img_urls=response.xpath('//section[@class="card_module"]//img/@src').extract_first()
+        def deal_like_count(like_count_raw):
+            return int(like_count_raw[0]) if like_count_raw else 0
 
 
-        content_dict={
+
+        content=response.xpath('//div[@class="news_content"]/div[@class="news_part_father"]').extract_first()
+        publish_time_raw=response.xpath('//div[@class="news_content"]//p[@class="about_news"]/text()').re('(\d{4}\-\d{1,2}\-\d{1,2} \d{1,2}\:\d{1,2})')
+        publish_user=response.xpath('//div[@class="news_content"]//p[@class="about_news" and not(@style)]/text()').extract_first(default='')
+        img_urls=response.xpath('//div[@class="news_content"]//img/@src').extract()
+        video_urls=response.xpath('//div[@class="news_content"]//source/@src').extract()
+        like_count_raw = response.xpath('//a[@id="news_praise"]/text()').re('\d+')
+
+
+        publish_time=deal_publish_time(publish_time_raw)
+        like_count=deal_like_count(like_count_raw)
+
+
+        article_data={
             'content':content,
-            'img_urls':img_urls
+            'publish_time':publish_time,
+            'publish_user':publish_user,
+            'img_urls':img_urls,
+            'video_urls':video_urls,
+            'like_count':like_count
         }
+        # article_data.update
+        metadata.update(article_data)
+        url_cmt = 'http://app.thepaper.cn/clt/jsp/v3/contFloorCommentList.jsp'
+        formdata=deal_comments_urls(metadata)
 
-        metadata.update(content_dict)
-
-
-
-
-        # return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,meta={'pre_data':metadata,'formdata':formdata},formdata=formdata,callback=self.deal_comments)
-
-
+        return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,meta={'pre_data':metadata,'formdata':formdata},formdata=formdata,callback=self.deal_comments)
 
     def deal_comments(self,response):
         metadata=response.meta['pre_data']
