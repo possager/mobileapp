@@ -61,6 +61,9 @@
                         <div class="item">
                             依赖库:pyexecjs,pymongo,scrapy,scrapyd,redis。
                         </div>
+                        <div class="item">
+                            今日头条过滤掉了不少，一会检查是怎么回事。
+                        </div>
                     </div>
 
                 </div>
@@ -185,7 +188,7 @@
                                 抓不到评论信息，他留下的评论接口有问题。
                             </div>
                             <div class="item">
-                                暂时没做评论抓取功能，因为实在找不到评论的接口
+                                暂时没做评论抓取功能，因为实在找不到评论的接口，已经有了抓取评论的功能了，只是没有抓取下一页的
                             </div>
                         </div>
                         <h2>
@@ -195,8 +198,12 @@
                             <div class="item">
                                 新浪的board中，返回的字段不全。每一个最后都加一个判断
                             </div>
+                            <div class="item">
+                                新浪的url是直接抓的app的链接，链接里边的字段都不能改变，还不能少，所以实在没有找到突破方法，只有将原来是什么样子的就是什么样子的url给拷贝出来。
+                            </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>

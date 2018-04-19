@@ -179,9 +179,10 @@ class changdu(Spider):
 
 
         def deal_comment_urls(news_id):
-            comment_url="http://interfacev5.vivame.cn/x1-interface-v5/json/commentlist.json?platform=android&installversion=6.2.2.2&channelno=AZWMA2320480100&mid=5284047f4ffb4e04824a2fd1d1f0cd62&uid=3125&sid=f4umcvbs-4154-495a-b13f-2245a758834a&type=0&id=" + str(news_id) + "&pageindex=0&pagesize=20&commentType=4"
+            # comment_url="http://interfacev5.vivame.cn/x1-interface-v5/json/commentlist.json?platform=android&installversion=6.2.2.2&channelno=AZWMA2320480100&mid=5284047f4ffb4e04824a2fd1d1f0cd62&uid=3125&sid=f4umcvbs-4154-495a-b13f-2245a758834a&type=0&id=" + str(news_id) + "&pageindex=0&pagesize=20&commentType=4"
+            comment_url2='https://interfacev5.vivame.net.cn/x1-interface-v5/json/commentlist.json?uid=15155081&platform=android&installversion=7.0.6&channelno=VIVAA2320480100&sid=&latlng=31.247631,121.497856&id='+str(news_id)+'&type=&pageindex=1&pagesize=10&commentType=4&appId=83ee783f8111b5ec3f0d888d0e5a0381&tk=01iofi8o-64oe-j61l-i389-3e66bc946ff9&_='+str(time.time()*1000)
 
-            return comment_url
+            return comment_url2
 
 
         content=response.xpath('//div[@id="aMain"]/div[@class="text"]').extract()
@@ -210,15 +211,22 @@ class changdu(Spider):
             publish_time=time.strftime('%Y-%m-%d %H:%M:%S',time_tuple)
             return publish_time
 
+        def deal_comment_url_next(cmt_url):
+            cmt_url_splited=cmt_url.split('&pageindex=')
+            page_STR_int=cmt_url_splited[1].split('&')[0]
+            cmt_url_next=cmt_url_splited[0]+'&pageindex='+str(int(page_STR_int)+1)+'&pagesize=10&commentType=4&appId=83ee783f8111b5ec3f0d888d0e5a0381&tk=01iofi8o-64oe-j61l-i389-3e66bc946ff9&_='+str(time.time()*1000)
+
+            return cmt_url_next
         datajson=json.loads(response.text)
         for one_cmt in datajson['data']:
             _id=one_cmt['id']
-            publicTimestamp=one_cmt['createAt']
+            publicTimestamp=int(one_cmt['createdAt']/1000)
             content=one_cmt['content']
             publish_user=one_cmt['communityUser']['nickName']
             publish_user_id=one_cmt['communityUser']['uid']
             publish_user_photo=one_cmt['communityUser']['headIcon']
             like_count=one_cmt['likeInfo']['likeCount']
+
 
 
             publish_time=deal_publish_time(publicTimestamp)
@@ -231,8 +239,14 @@ class changdu(Spider):
                 'publish_user_id':publish_user_id,
                 'publish_user_photo':publish_user_photo,
                 'like_count':like_count,
-                'publish_time':publish_time
+                'publish_time':publish_time,
+                'parent_id':metadata['id'],
+                'ancestor_id':metadata['id']
             }
 
             metadata['reply_nodes'].append(one_comment_dict)
+
+
+        if len(datajson['data'])==10:
+            return scrapy.Request(url=deal_comment_url_next(response.url),headers=self.mobile_app_headers,meta={'pre_data':metadata},callback=self.deal_comments)
         return standard(metadata)
