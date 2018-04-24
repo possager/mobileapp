@@ -132,10 +132,11 @@ class jinritoutiao(Spider):
                 'abstract': None,
                 'params': None,
                 'appname': one_board['appName'],
-                'channelName': one_board['channelName']
+                'channelName': one_board['channelName'],
+                'spider_time':time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(int(time.time())))
             }
             yield scrapy.FormRequest(url=one_board_info['url'], headers=self.brownser_headers, meta={'pre_data': one_board_info},
-                                     formdata=url1_dict,callback=self.deal_board,method='GET')
+                                     formdata=url1_dict,callback=self.deal_board,method='GET',dont_filter=True)
         client.close()
 
 
@@ -209,18 +210,75 @@ class jinritoutiao(Spider):
         metadata['reply_nodes']=[]
 
 
-        def deal_comment_url(article_id,item_id):
-            comment_url_20='http://ic.snssdk.com/article/v1/tab_comments/?group_id='+article_id+'&item_id='+str(item_id)+'&aggr_type=1&count=20&offset=0'
-            return comment_url_20
+        def deal_comment_url(item_id):
+            time_str = str(int(time.time() * 1000))
+            url1_dict = {
+                'group_id': item_id,
+                'item_id': item_id,
+                'aggr_type': '1',
+                'count': '20',
+                'offset': '0',
+                'tab_index': '0',
+                'fold': '1',
+                'device_id': '51201841048',
+                'iid': '30763638273',
+                'ac': 'wifi',
+                'channel': '360',
+                'aid': '13',
+                'app_name': 'news_article',
+                'version_code': '666',
+                'version_name': '6.6.6',
+                'device_platform': 'android',
+                'ab_version': '264037%2C308571%2C293032%2C283773%2C320329%2C317201%2C309312%2C319438%2C317498%2C318245%2C295827%2C325050%2C315441%2C239096%2C324283%2C170988%2C318440%2C320218%2C325197%2C265169%2C281390%2C297058%2C276203%2C286212%2C313219%2C313473%2C318242%2C312563%2C310595%2C325042%2C327128%2C322322%2C327760%2C317411%2C328093%2C323233%2C304133%2C326120%2C324799%2C317076%2C324571%2C280773%2C319962%2C326729%2C317208%2C322280%2C321405%2C326342%2C214069%2C319863%2C264033%2C258356%2C247849%2C280448%2C323844%2C281299%2C320995%2C325615%2C327725%2C326807%2C328053%2C287590%2C288418%2C290192%2C260657%2C327544%2C327894%2C326190%2C327181%2C324614%2C271178%2C326589%2C326524%2C326532',
+                'ab_client': 'a1%2Cc4%2Ce1%2Cf2%2Cg2%2Cf7',
+                'ab_feature': '94563%2C102749',
+                'abflag': '3',
+                'ssmix': 'a',
+                'device_type': 'SM-G9350',
+                'device_brand': 'samsung',
+                'language': 'zh',
+                'os_api': '22',
+                'os_version': '5.1.1',
+                'uuid': '865944459551126',
+                'openudid': '7003041115949825',
+                'manifest_version_code': '666',
+                'resolution': '1280*720',
+                'dpi': '192',
+                'update_version_code': '66611',
+                '_rticket': time_str,
+                'plugin': '10607',
+                'fp': 'z2TqPlP_LlG7FlPrLlU1FYK7FYFI',
+                'pos': '5r_88Pzt3vTp5L-nv3sVDXQeIHglH7-xv_zw_O3R8vP69Ono-fi_p6ytqbOtq6upqKuxv_zw_O3R_On06ej5-L-nrq2zq6yvqKyu4A%3D%3D',
+                'rom_version': '22',
+                'ts': '1524551666',
+                'as': 'a2d54ccd928ffabf3e7240',
+                'mas': '0071fa1278a41b230146db84092b54cdcd0aa2628e8ae0c698',
+                # 'odin_tt':'dc611ac46faf1607054b116a96100182592497ca4c4c7f7e2ab9d3bc5174210005f3061297bf55728f26bccaf03c0652',
+                # 'qh[360]':'1',
+                # 'install_id':'30763638273',
+                # 'ttreq':'1$822f55234ceb355b3d20cbab3f24ec4adc299e2e',
+            }
+
+            return url1_dict
 
 
         datajson=json.loads(response.text)
 
-
-        content=datajson['data']['content']
+        try:
+            content=datajson['data']['content']
+        except Exception as e:
+            print(e)
         publish_user_id=datajson['data']['creator_uid']
-        publish_user=datajson['data']['media_user']['screen_name']
-        publish_user_photo=datajson['data']['media_user']['avatar_url']
+        try:
+            publish_user=datajson['data']['media_user']['screen_name']
+            publish_user_photo = datajson['data']['media_user']['avatar_url']
+            source=datajson['data']['source']
+        except Exception as e:
+            print(e)
+            publish_user=datajson['data']['creator_uid']
+            publish_user_photo=None
+            source=datajson['data']['source']
+
 
         selector1=scrapy.Selector(text=content)
         img_urls=selector1.xpath('//img/@src').extract()
@@ -230,14 +288,21 @@ class jinritoutiao(Spider):
             'publish_user_id':publish_user_id,
             'img_urls':img_urls,
             'publish_user_photo':publish_user_photo,
-            'publish_user':publish_user
+            'publish_user':publish_user,
+            'source':source
         }
         metadata.update(content_dict)
 
-        url_for_comments=deal_comment_url(article_id=metadata['id'],item_id=metadata['item_id'])
+        comment_params=deal_comment_url(item_id=metadata['item_id'])
+        comment_url_v2='https://iu.snssdk.com/article/v2/tab_comments/'
+        headers_for_comment_url={
+            'User-Agent':'Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G9350 Build/LMY48Z) NewsArticle/6.6.6 okhttp/3.7.0.6',
+            'Host':'iu.snssdk.com',
+            'Connection':'close',
+            'X-SS-REQ-TICKET':'1524551666680'
+                }
 
-
-        yield scrapy.Request(url=url_for_comments,meta={'pre_data':metadata},callback=self.deal_comments)
+        yield scrapy.FormRequest(method='GET',url=comment_url_v2,meta={'pre_data':metadata},callback=self.deal_comments,formdata=comment_params,headers=headers_for_comment_url)
 
 
 
@@ -262,16 +327,67 @@ class jinritoutiao(Spider):
             time2=time.strftime('%Y-%m-%d %H:%M:%S',time_tuple)
             return time2
 
-        def deal_commentUrl_next(comment_url):
-            comment_url_splited=comment_url.split('offset=')
-            pageNum=int(comment_url_splited[1])
-            pageNum+=20
-            comment_url_next=comment_url_splited[0]+'offset='+str(pageNum)
-            return comment_url_next
+        # def deal_commentUrl_next(comment_url):
+        #     comment_url_splited=comment_url.split('offset=')
+        #     pageNum=int(comment_url_splited[1])
+        #     pageNum+=20
+        #     comment_url_next=comment_url_splited[0]+'offset='+str(pageNum)
+        #     return comment_url_next
 
+        def deal_comment_next_params(item_id,response):
+            time_str = str(int(time.time() * 1000))
+            offset=response.url.split('offset=')[1].split('&')[0]
+            offset=int(offset)
+            url1_dict = {
+                'group_id': item_id,
+                'item_id': item_id,
+                'aggr_type': '1',
+                'count': '20',
+                'offset': str(offset+20),
+                'tab_index': '0',
+                'fold': '1',
+                'device_id': '51201841048',
+                'iid': '30763638273',
+                'ac': 'wifi',
+                'channel': '360',
+                'aid': '13',
+                'app_name': 'news_article',
+                'version_code': '666',
+                'version_name': '6.6.6',
+                'device_platform': 'android',
+                'ab_version': '264037%2C308571%2C293032%2C283773%2C320329%2C317201%2C309312%2C319438%2C317498%2C318245%2C295827%2C325050%2C315441%2C239096%2C324283%2C170988%2C318440%2C320218%2C325197%2C265169%2C281390%2C297058%2C276203%2C286212%2C313219%2C313473%2C318242%2C312563%2C310595%2C325042%2C327128%2C322322%2C327760%2C317411%2C328093%2C323233%2C304133%2C326120%2C324799%2C317076%2C324571%2C280773%2C319962%2C326729%2C317208%2C322280%2C321405%2C326342%2C214069%2C319863%2C264033%2C258356%2C247849%2C280448%2C323844%2C281299%2C320995%2C325615%2C327725%2C326807%2C328053%2C287590%2C288418%2C290192%2C260657%2C327544%2C327894%2C326190%2C327181%2C324614%2C271178%2C326589%2C326524%2C326532',
+                'ab_client': 'a1%2Cc4%2Ce1%2Cf2%2Cg2%2Cf7',
+                'ab_feature': '94563%2C102749',
+                'abflag': '3',
+                'ssmix': 'a',
+                'device_type': 'SM-G9350',
+                'device_brand': 'samsung',
+                'language': 'zh',
+                'os_api': '22',
+                'os_version': '5.1.1',
+                'uuid': '865944459551126',
+                'openudid': '7003041115949825',
+                'manifest_version_code': '666',
+                'resolution': '1280*720',
+                'dpi': '192',
+                'update_version_code': '66611',
+                '_rticket': time_str,
+                'plugin': '10607',
+                'fp': 'z2TqPlP_LlG7FlPrLlU1FYK7FYFI',
+                'pos': '5r_88Pzt3vTp5L-nv3sVDXQeIHglH7-xv_zw_O3R8vP69Ono-fi_p6ytqbOtq6upqKuxv_zw_O3R_On06ej5-L-nrq2zq6yvqKyu4A%3D%3D',
+                'rom_version': '22',
+                'ts': '1524551666',
+                'as': 'a2d54ccd928ffabf3e7240',
+                'mas': '0071fa1278a41b230146db84092b54cdcd0aa2628e8ae0c698',
+            }
+            return url1_dict
 
-        datajson = json.loads(response.text)
-        has_more=datajson['has_more']
+        try:
+            datajson = json.loads(response.text)
+            has_more=datajson['has_more']
+        except Exception as e:
+            print(e)
+            return
 
 
         if len(datajson['data'])<2:
@@ -281,7 +397,7 @@ class jinritoutiao(Spider):
             return stand_data
 
 
-        for one_cmt in datajson['data'][1:]:
+        for one_cmt in datajson['data']:
             one_cmt=one_cmt['comment']
             id = one_cmt['id']
             content = one_cmt['text']
@@ -321,10 +437,17 @@ class jinritoutiao(Spider):
             }
             metadata['reply_nodes'].append(one_cmt_dict)
 
-        urlnext=deal_commentUrl_next(response.url)
+        comment_params_next=deal_comment_next_params(metadata['id'],response)
+        comment_url_v2='https://iu.snssdk.com/article/v2/tab_comments/'
+        headers_for_comment_url = {
+            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G9350 Build/LMY48Z) NewsArticle/6.6.6 okhttp/3.7.0.6',
+            'Host': 'iu.snssdk.com',
+            'Connection': 'close',
+            'X-SS-REQ-TICKET': '1524551666680'
+        }
 
         if has_more:
-            return scrapy.Request(url=urlnext,meta={'pre_data':metadata},callback=self.deal_comments)
+            return scrapy.FormRequest(method='GET',url=comment_url_v2,meta={'pre_data':metadata},callback=self.deal_comments,headers=headers_for_comment_url,formdata=comment_params_next)
         else:
             stand_data = standard(metadata)
             print('in bottom,the urlmd5 is' + stand_data['urlmd5'])
