@@ -176,7 +176,7 @@ class sina(Spider):
                     'original_reply_count':original_reply_count,
                     'keywords':keywords
                 },
-                'publish_time':deal_publish_time(publicTimestamp),
+                'publish_time':deal_publish_time(publicTimestamp) if publicTimestamp else '1111-11-11 11:11:11',
                 'reply_count':reply_count
             }
             metadata_in_for.update(one_article_dict)

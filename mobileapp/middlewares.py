@@ -6,7 +6,9 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import redis
+import json
+import time
 
 class MobileappSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -78,7 +80,27 @@ class MobileappDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        return None
+        if 'iu.snssdk.com/article/v2/tab_comments' in request.url:
+            retryN=1
+            proxyLink=None
+            while retryN<3:
+                proxyJson=self.redis1.spop('proxy_dealed')
+                if proxyJson:
+                    proxyJsonLoad=json.loads(proxyJson)
+                    ip=proxyJsonLoad['ip']
+                    port=proxyJsonLoad['port']
+                    proxyLink=ip+':'+port
+                    break
+                print('代理池中没有代理了，正在等待代理')
+                time.sleep(5)
+            if proxyLink:
+                request.meta['proxy']='http://'+proxyLink
+                request.meta['proxy_json_raw']=proxyJson
+                return
+            else:
+                return
+        else:
+            return
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
@@ -87,6 +109,13 @@ class MobileappDownloaderMiddleware(object):
         # - return a Response object
         # - return a Request object
         # - or raise IgnoreRequest
+        if 'iu.snssdk.com/article/v2/tab_comments' in request.url:
+            try:
+                proxy_json_raw=request.meta['proxy_json_raw']
+                self.redis1.sadd('proxy_dealed',proxy_json_raw)
+                print('成功往回插入数据库一个代理')
+            except Exception as e:
+                print(e)
         return response
 
     def process_exception(self, request, exception, spider):
@@ -101,3 +130,4 @@ class MobileappDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+        self.redis1=redis.Redis(host='localhost',port=6379,db=3)
