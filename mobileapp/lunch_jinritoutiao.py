@@ -26,4 +26,4 @@ def start_a_spider_job(project='default',spidername=None):
 if __name__ == '__main__':
     while True:
         start_a_spider_job(spidername='jinritoutiao')
-        time.sleep(10*60)
+        time.sleep(30*60)

@@ -65,7 +65,8 @@ def get_all_Jobs(project='default'):
 def start_all_spider():
     all_spider_avalid=get_all_spiders()
     for one_spidername in all_spider_avalid:
-        start_a_spider_job(spidername=one_spidername)
+        if 'jinritou' not in one_spidername:#今日头条的启动单独设置，因为添加了代理。
+            start_a_spider_job(spidername=one_spidername)
 
     print('_____________\n'
           ' all start  \n'
