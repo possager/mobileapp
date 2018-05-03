@@ -99,8 +99,6 @@ class wangyi(Spider):
             yield scrapy.Request(url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
         client.close()
 
-
-
     def deal_board(self,response):
         '''
         :param response:
@@ -125,7 +123,7 @@ class wangyi(Spider):
             metadata=response.meta['pre_data']
 
 
-            yield scrapy.Request(url=next_url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=next_callback)
+            yield scrapy.Request(url=next_url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=self.deal_content)
 
     def deal_content(self,response):
         metadata=response.meta['pre_data']

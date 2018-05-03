@@ -4,8 +4,8 @@ import json
 import time
 
 
-# console_url='http://127.0.0.1:6800'
-console_url='http://178.16.7.121:6800'#remote
+console_url='http://127.0.0.1:6800'
+# console_url='http://178.16.7.121:6800'#remote
 
 def get_all_spiders():
     response1=requests.get(url=console_url+'/listspiders.json?',params={'project':'default'})
@@ -65,7 +65,7 @@ def get_all_Jobs(project='default'):
 def start_all_spider():
     all_spider_avalid=get_all_spiders()
     for one_spidername in all_spider_avalid:
-        if 'jinritou' not in one_spidername:#今日头条的启动单独设置，因为添加了代理。
+        if one_spidername not in ['jinritoutiao','wangyi','sina']:#今日头条的启动单独设置，因为添加了代理。
             start_a_spider_job(spidername=one_spidername)
 
     print('_____________\n'
@@ -86,9 +86,12 @@ def cancel_all_spider_job():
 
 
 if __name__ == '__main__':
-    get_all_spiders()
+    # get_all_spiders()
     # start_a_spider_job(spidername='huanqiu')
     # cancel_job(jobId='1c2691c032d611e8b1ca30b49e7b08df')
     # get_all_Jobs()
     # cancel_all_spider_job()
-    start_all_spider()
+
+    while True:
+        start_all_spider()
+        time.sleep(10*60)

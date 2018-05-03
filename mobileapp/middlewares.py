@@ -87,9 +87,9 @@ class MobileappDownloaderMiddleware(object):
                 proxyJson=self.redis1.spop('proxy_dealed')
                 if proxyJson:
                     proxyJsonLoad=json.loads(proxyJson)
-                    ip=proxyJsonLoad['ip']
-                    port=proxyJsonLoad['port']
-                    proxyLink=ip+':'+port
+                    ip=proxyJsonLoad['Ip']
+                    port=proxyJsonLoad['Port']
+                    proxyLink=str(ip)+':'+str(port)
                     break
                 print('代理池中没有代理了，正在等待代理')
                 time.sleep(5)

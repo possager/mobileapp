@@ -128,6 +128,7 @@ class zaker(Spider):
                 full_url=one_article['full_url']#请求数据的api接口
             except Exception as e:
                 print(e)
+                continue
 
 
             one_article_dict={
