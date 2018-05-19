@@ -6,12 +6,19 @@ import datetime
 
 
 
-logger=logging.getLogger(__name__)
-filehandler=logging.FileHandler('AdjustJRTTCmtNum.txt')
-filehandler.setFormatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-filehandler.setLevel(logging.WARN)
-logger.addHandler(filehandler)
+# logger=logging.getLogger(__name__)
+# logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# filehandler=logging.FileHandler('AdjustJRTTCmtNum.txt')
+# filehandler.setLevel(logging.WARN)
+# logger.addHandler(filehandler)
 
+logger = logging.getLogger(__name__)
+logger.setLevel(level = logging.INFO)
+handler = logging.FileHandler("Proxy_log.txt")
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 
 
@@ -24,13 +31,15 @@ while True:
 
 
     today_date=time.strftime('%Y-%m-%d',time.localtime(time.time()))+' 00:00:00'
-    for i in newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':today_date}}):
+    num_total=newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-05-06 00:00:00'}}).count()
+    print(num_total)
+    for i in newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-05-06 00:00:00'}}):
         urlmd5_newsId=i['urlmd5']
 
         reply_count=cmtDB.find({'news_id':urlmd5_newsId}).count()
-        newsdata.update({'_id':i['_id']},{'reply_count':reply_count})
+        newsdata.update({'_id':i['_id']},{'$set':{'reply_count':reply_count}},)
         logmsg='has adjusted a reoly_count in jinritoutiao_comment,id is %s,reply_count is %s'%(str(i['_id']),str(reply_count))
-        logger.warning(logmsg)
+        logger.warning(msg=logmsg)
 
     mongoclient.close()
 
