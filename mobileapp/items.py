@@ -23,7 +23,7 @@ class MobileappItem(scrapy.Item):
 
 
 
-
+    abstract=scrapy.Field()
     title = scrapy.Field()  # 标题
     content = scrapy.Field()  # 去噪后的存文本内容
     spider_time = scrapy.Field()  # 爬虫爬取时间

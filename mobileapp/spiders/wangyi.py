@@ -252,10 +252,19 @@ class wangyi(Spider):
                 metadata_in_for=copy.copy(metadata)
                 title=one_article['title']
                 source=one_article['source']
-                publish_time=one_article['ptime']
+                try:
+                    publish_time=one_article['ptime']
+                except Exception as e:
+                    try:
+                        publish_time=one_article['lmodify']
+                    except:
+                        publish_time=''
                 reply_count=one_article['replyCount']
                 _id=one_article['id']
-                abstract=one_article['digest']
+                try:
+                    abstract=one_article['digest']
+                except:
+                    abstract=''
 
                 one_article_dict={
                     'title':title,
@@ -263,7 +272,8 @@ class wangyi(Spider):
                     'publish_time':publish_time,
                     'reply_count':reply_count,
                     'id':_id,
-                    'abstract':abstract
+                    'abstract':abstract,
+                    'reply_nodes':[]
                 }
 
                 metadata_in_for.update(one_article_dict)
@@ -320,7 +330,11 @@ class wangyi(Spider):
                     }
             return post_data
 
-        datajson=json.loads(response.text)
+        try:
+            datajson=json.loads(response.text)
+        except Exception as e:
+            print(e)
+            return
         if _id in datajson.keys():
             content_data=datajson[_id]
             content=content_data['body']
@@ -336,7 +350,7 @@ class wangyi(Spider):
 
 
             cmt_params=deal_comments_urls()
-            cmt_urls='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/DI8G906G0001875P/app/comments/newList'
+            cmt_urls='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/'+metadata['id']+'/app/comments/newList'
             headers={
                 'Accept-Encoding':'gzip',
                 'Connection':'Keep-Alive',
@@ -346,7 +360,11 @@ class wangyi(Spider):
                 'User-C':'6KaB6Ze7',
                 'User-N':'wKq3+ZhKJshqLUdmuO/3GU54yPhI0ZGYXNBL+qbp+gYtkyOvjJ64oHfDp3tOH9cB'
             }
-            yield scrapy.FormRequest(url=cmt_urls,method='GET',formdata=cmt_params,meta={'pre_data':metadata},headers=headers,callback=self.deal_comments)
+            try:
+                del metadata['request_data']
+            except Exception as e:
+                print(e)
+            yield scrapy.FormRequest(url=cmt_urls,method='GET',formdata=cmt_params,meta={'pre_data':metadata,'formdata':cmt_params},headers=headers,callback=self.deal_comments)
 
 
 
@@ -356,45 +374,28 @@ class wangyi(Spider):
 
     def deal_comments(self,response):
         metadata=response.meta['pre_data']
-        formdata=response.meta['formdata']
+        reply_nodes=[]
 
-        def deal_publish_time(publish_time_raw):
-            '''
-            :param publish_time_raw:
-            :return:
-            :notice:这里的publish_time后边反正也会更新
-            '''
-            if publish_time_raw:
-                if '分钟前' in publish_time_raw:
-                    minulate = publish_time_raw.replace('分钟前', '')
-                    time_b = datetime.datetime.now() - timedelta(minutes=int(minulate))
-                    publish_time = time_b.strftime('%Y-%m-%d %H:%M:%S')
-                elif '小时前' in publish_time_raw:
-                    hours = publish_time_raw.replace('小时前', '')
-                    time_b = datetime.datetime.now() - timedelta(hours=int(hours))
-                    publish_time = time_b.strftime('%Y-%m-%d %H:%M:%S')
-                elif '天前' in publish_time_raw:
-                    days = publish_time_raw.replace('天前', '')
-                    time_b = datetime.datetime.now() - timedelta(days=int(days))
-                    publish_time = time_b.strftime('%Y-%m-%d %H:%M:%S')
-                else:
-                    return '1111-11-11 11:11:11'
-                return publish_time
-        def deal_parent_id(parent_id,ancestor_id):
-            if parent_id==0:
-                return ancestor_id
-            else:
-                return parent_id
+        def deal_cmt_params_new(cmt_params):
+            offset_pre=cmt_params['offset']
+            offset_now=int(offset_pre)+20
+            cmt_params['offset']=offset_now
+            return cmt_params
 
         datajson = json.loads(response.text)
 
-        for one_cmt_key in datajson['comments'].keys():
-            publish_user_id=one_cmt_key
+        if 'comments' in datajson.keys():
+            pre_cmt_params=response.meta['formdata']
+            url_this_cmt='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/'+metadata['id']+'/app/comments/newList'
+            next_cmt_params=deal_cmt_params_new(pre_cmt_params)
+        else:
+            return metadata
 
+
+        for one_cmt_key in datajson['comments'].keys():
             one_cmt=datajson['comments'][one_cmt_key]
             id = one_cmt['postId']
             content = one_cmt['content']
-            publish_user_id = one_cmt['userId']
             dislike_count=one_cmt['against']
             publish_time=one_cmt['createTime']
             like_count=one_cmt['favCount']
@@ -405,7 +406,6 @@ class wangyi(Spider):
                 publish_user=one_cmt['user']['nickname']
             except:
                 publish_user='有态度的网友'
-                continue
             try:
                 publish_user_id=one_cmt['user']['userId']
             except:
@@ -418,6 +418,30 @@ class wangyi(Spider):
                 publish_user_photo=one_cmt['avatar']
             except:
                 publish_user_photo=''
+
+            one_cmt_dict={
+                'publish_user':publish_user,
+                'id':id,
+                'content':content,
+                'publish_user_id':publish_user_id,
+                'dislike_count':dislike_count,
+                'publish_time':publish_time,
+                'like_count':like_count,
+                'publish_user_photo':publish_user_photo,
+                'parent_id':metadata['id'],
+                'ancestor_id':metadata['id'],
+                'params':{
+                    'ip':ip,
+                    'address':address,
+                    'share_count':sharecount
+                }
+            }
+            reply_nodes.append(one_cmt_dict)
+
+
+        return scrapy.FormRequest(method='GET',headers=response.headers,url=url_this_cmt,meta={'pre_data':metadata,'formdata':next_cmt_params},formdata=next_cmt_params,callback=self.deal_comments)
+
+        # request_meta=response.requests
 
 
 
