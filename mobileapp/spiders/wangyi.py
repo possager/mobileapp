@@ -33,153 +33,326 @@ class wangyi(Spider):
 
     def start_requests(self):
 
-        # def get_request_for_debug():
-        #     task_list=[
-        #         {
-        #             'url':'http://m.thepaper.cn/channel_26916',
-        #             'channelId':'channel_26916',
-        #             'abstract':None,
-        #             'params':None,
-        #             'appname':'thepaper',
-        #             'channelName':'视频'
-        #         },
-        #         {
-        #             'url': 'http://m.thepaper.cn/channel_25953',
-        #             'channelId': 'channel_25953',
-        #             'abstract': None,
-        #             'params': None,
-        #             'appname': 'thepaper',
-        #             'channelName': '生活'
-        #         },
-        #         {
-        #             'url': 'http://m.thepaper.cn/channel_25951',
-        #             'channelId': 'channel_25951',
-        #             'abstract': None,
-        #             'params': None,
-        #             'appname': 'thepaper',
-        #             'channelName': '财经'
-        #         },
-        #         {
-        #             'url': 'http://m.thepaper.cn/channel_25950',
-        #             'channelId': 'channel_25950',
-        #             'abstract': None,
-        #             'params': None,
-        #             'appname': 'thepaper',
-        #             'channelName': '时事'
-        #         },
-        #         {
-        #             'url': 'http://m.thepaper.cn/channel_25952',
-        #             'channelId': 'channel_25952',
-        #             'abstract': None,
-        #             'params': None,
-        #             'appname': 'thepaper',
-        #             'channelName': '思想'
-        #         },
+        def get_request_for_debug():
+            task_list=[
+                {
+                    'url':'http://c.m.163.com/recommend/getSubDocPic',
+                    'channelId':'T1457068979049',
+                    'abstract':None,
+                    'params':None,
+                    'appname':'wangyi',
+                    'channelName':'视频',
+                    'request_data':{
+                        'channel':'T1457068979049',
+                        'subtab':'Video_Recom',
+                        'size':'10',
+                        'offset':'0',
+                        'fn':'1',
+                        'passport':'',
+                        'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+                        'lat':'',
+                        'lon':'',
+                        'version':'35.1',
+                        'net':'wifi',
+                        # 'ts':'1526776833',
+                        # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                        # 'encryption':'1',
+                        # 'canal':'news_lljc3',
+                        'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                        'open':'',
+                        'openpath':''
+                    }
+                },
+                # {
+                #     'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                #     'channelId': 'T1348647909107',
+                #     'abstract': None,
+                #     'params': None,
+                #     'appname': 'wangyi',
+                #     'channelName': '头条',
+                #     'request_data':{
+                #         'tid':'T1348647909107',
+                #         'from':'toutiao',
+                #         'offset':'20',
+                #         'size':'10',
+                #         'fn':'1',
+                #         'LastStdTime':'1526756888',
+                #         'spestr':'shortnews',
+                #         'prog':'',
+                #         # 'passport':'',
+                #         'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+                #         # 'lat':'',
+                #         # 'lon':'',
+                #         # 'version':'35.1',
+                #         # 'net':'wifi',
+                #         # 'ts':'1526773568',
+                #         # 'sign':'Kr8H5/efevcqnpXLD6j4pyk/QKy7LsH5M0sslXNj5g148ErR02zJ6/KXOnxX046I',
+                #         # 'encryption':'1',
+                #         'canal':'news_lljc3',
+                #         # 'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                #         # 'open':'',
+                #         # 'openpath':''
+                #     }
+                # },
+                {
+                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                    'channelId': 'T1467284926140',
+                    'abstract': None,
+                    'params': None,
+                    'appname': 'wangyi',
+                    'channelName': '要闻',
+                    'request_data':{
+                            'from':'T1467284926140',
+                            'size':'10',
+                            'offset':'0',
+                            'fn':'1',
+                            'passport':'',
+                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+                            'lat':'',
+                            'lon':'',
+                            'version':'35.1',
+                            'net':'wifi',
+                            # 'ts':'1526776833',
+                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                            # 'encryption':'1',
+                            # 'canal':'news_lljc3',
+                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                            'open':'',
+                            'openpath':''
+                        }
+                },
+                {
+                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                    'channelId': 'T1348649580692',
+                    'abstract': None,
+                    'params': None,
+                    'appname': 'wangyi',
+                    'channelName': '科技',
+                    'request_data':{
+                            'from':'T1348649580692',
+                            'size':'10',
+                            'offset':'0',
+                            'fn':'1',
+                            'passport':'',
+                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+                            'lat':'',
+                            'lon':'',
+                            'version':'35.1',
+                            'net':'wifi',
+                            # 'ts':'1526776833',
+                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                            # 'encryption':'1',
+                            # 'canal':'news_lljc3',
+                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                            'open':'',
+                            'openpath':''
+                        }
+                },
+                {
+                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                    'channelId': 'T1348648756099',
+                    'abstract': None,
+                    'params': None,
+                    'appname': 'wangyi',
+                    'channelName': '财经',
+                    'request_data':{
+                            'from':'T1348648756099',
+                            'size':'10',
+                            'offset':'0',
+                            'fn':'1',
+                            'passport':'',
+                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+                            'lat':'',
+                            'lon':'',
+                            'version':'35.1',
+                            'net':'wifi',
+                            # 'ts':'1526776833',
+                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                            # 'encryption':'1',
+                            # 'canal':'news_lljc3',
+                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                            'open':'',
+                            'openpath':''
+                        }
+
+                },
+                {
+                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                    'channelId': 'T1348648141035',
+                    'abstract': None,
+                    'params': None,
+                    'appname': 'wangyi',
+                    'channelName': '军事',
+                    'request_data': {
+                        'from': 'T1348648141035',
+                        'size': '10',
+                        'offset': '0',
+                        'fn': '1',
+                        'passport': '',
+                        'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                        'lat': '',
+                        'lon': '',
+                        'version': '35.1',
+                        'net': 'wifi',
+                        # 'ts':'1526776833',
+                        # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                        # 'encryption':'1',
+                        # 'canal':'news_lljc3',
+                        'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                        'open': '',
+                        'openpath': ''
+                    }
+
+                },
+
+            ]
+            for one_task in task_list:
+                yield scrapy.FormRequest(method='GET',url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_notoutiao,formdata=one_task['request_data'])
+        for i in get_request_for_debug():
+            yield i
+
+        # client=pymongo.MongoClient('178.16.7.86',27017)
+        # COL=client['news']
+        # DOC=COL['channellist']
         #
-        #     ]
-        #     for one_task in task_list:
-        #         yield scrapy.Request(url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_next)
-        # for i in get_request_for_debug():
-        #     yield i
+        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
+        # for one_board in mongocfg:
+        #     one_board_info = {
+        #         'url': one_board['url'],
+        #         'channelId': one_board['channelId'],
+        #         'abstract': None,
+        #         'params': None,
+        #         'appname': one_board['appName'],
+        #         'channelName': one_board['channelName']
+        #     }
+        #     yield scrapy.Request(url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+        # client.close()
 
-        client=pymongo.MongoClient('178.16.7.86',27017)
-        COL=client['news']
-        DOC=COL['channellist']
-
-        mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        for one_board in mongocfg:
-            one_board_info = {
-                'url': one_board['url'],
-                'channelId': one_board['channelId'],
-                'abstract': None,
-                'params': None,
-                'appname': one_board['appName'],
-                'channelName': one_board['channelName']
-            }
-            yield scrapy.Request(url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
-        client.close()
-
-    def deal_board(self,response):
+    def deal_board_notoutiao(self,response):
         '''
         :param response:
-        :return: request to be deal ,for getting board info;
-        :notice: the url next to visit for get content is like this:--http://www.thepaper.cn/load_index.jsp?nodeids=26912,26918,26965,26908,27260,26907,26911,26913,26906,26909,26910,26914,26915,26919,&topCids=2051901,2054797,2052136&pageidx=
-                 the "nodeids=26912,26918,26965,26908,27260,26907,26911,26913,26906,26909,26910,26914,26915,26919,&topCids=2051901,2054797,2052136&pageidx=" come from
-                 this board index page,and find by /*re('data	:	\"(.*?)\".*?Math\.random\b')*/;
+        :return: return the request for some content sepecificly
+        :notice: the different board may have differnet Json structure
         :notice: video's url is deferent from others.the video's url is http://m.thepaper.cn/channel_26916;
         :notice:
 
         '''
 
-        data_re_url=response.selector.re('data	:	\"(.*?)\".*?Math\.random')
-        if data_re_url:
-            if 'http://m.thepaper.cn/channel_26916' in response.url:
-                next_url_for_content='http://www.thepaper.cn/load_index.jsp?' + data_re_url[0]
-                next_callback=self.deal_board_Movie
-            else:
-                next_url_for_content = 'http://m.thepaper.cn/load_channel.jsp?' + data_re_url[0]
-                next_callback=self.deal_board_Article
+        metadata=response.meta['pre_data']
 
-            metadata=response.meta['pre_data']
+        def deal_content_url(data):
+            id=data['id']
+            return 'https://c.m.163.com/nc/article/'+str(id)+'/full.html'
+
+        datajson=json.loads(response.text)
+
+        if '推荐' in datajson.keys():
+            all_article=datajson['推荐']
+            for one_article in all_article:
+                metadata_in_for=copy.copy(metadata)
+                title=one_article['title']
+                source=one_article['source']
+                publish_time=one_article['ptime']
+                reply_count=one_article['replyCount']
+                _id=one_article['id']
+                abstract=one_article['digest']
+
+                one_article_dict={
+                    'title':title,
+                    'source':source,
+                    'publish_time':publish_time,
+                    'reply_count':reply_count,
+                    'id':_id,
+                    'abstract':abstract
+                }
+
+                metadata_in_for.update(one_article_dict)
+
+                url=deal_content_url(metadata_in_for)
+                metadata_in_for['url']=url
+                headers={
+                        'Accept-Encoding':'gzip',
+                        'Connection':'Keep-Alive',
+                        'Host':'c.m.163.com',
+                        'X-NR-Trace-Id':'1526809832821_50263131_863213510134567',
+                        'User-Agent':'NewsApp/35.1 Android/5.1.1 (samsung/SM-G9350)',
+                        'User-C':'5aix5LmQ',
+                    }
+
+                yield scrapy.Request(url=url,meta={'pre_data':metadata_in_for},headers=headers,callback=self.deal_content)
 
 
-            yield scrapy.Request(url=next_url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=self.deal_content)
+
+
+
+
+        # data_re_url=response.selector.re('data	:	\"(.*?)\".*?Math\.random')
+        #
+        #
+        #
+        #
+        # if data_re_url:
+        #     if 'http://m.thepaper.cn/channel_26916' in response.url:
+        #         next_url_for_content='http://www.thepaper.cn/load_index.jsp?' + data_re_url[0]
+        #         next_callback=self.deal_board_Movie
+        #     else:
+        #         next_url_for_content = 'http://m.thepaper.cn/load_channel.jsp?' + data_re_url[0]
+        #         next_callback=self.deal_board_Article
+        #
+        #     metadata=response.meta['pre_data']
+        #
+        #
+        #     yield scrapy.Request(url=next_url_for_content,headers=self.brownser_headers,meta={'pre_data':metadata},callback=self.deal_content)
 
     def deal_content(self,response):
         metadata=response.meta['pre_data']
         metadata['reply_nodes']=[]
+        _id=metadata['id']
 
-        def deal_publish_time(publish_time):
-            if publish_time:
-                return str(publish_time[0])+':00'
-            else:
-                return '1111-11-11 11:11:11'
 
-        def deal_comments_urls(comment_data):
+        def deal_comments_urls():
             post_data = {
-                'WD-UUID': '861557177515977',
-                'WD-CLIENT-TYPE': '04',
-                'WD-UA': 'oneplus_a3010_android',
-                'WD-VERSION': '4.4.6',
-                'WD-CHANNEL': '360sjzs',
-                'WD-RESOLUTION': '720*1256',
-                'userId': '2704158',
-                'WD-TOKEN': 'd2d2344c928de46787d06b6574c9fea0',
-            }
-            post_data['c']=comment_data['id']
+                    'offset':'0',
+                    'limit':'20',
+                    'showLevelThreshold':'5',
+                    'headLimit':'3',
+                    'tailLimit':'2',
+                    }
             return post_data
 
-        def deal_like_count(like_count_raw):
-            return int(like_count_raw[0]) if like_count_raw else 0
+        datajson=json.loads(response.text)
+        if _id in datajson.keys():
+            content_data=datajson[_id]
+            content=content_data['body']
+            like_count=content_data['threadVote']
+            reply_count=content_data['replyCount']
+
+            article_content_dict={
+                'content':content,
+                'like_count':like_count,
+                'reply_count':reply_count
+            }
+            metadata.update(article_content_dict)
+
+
+            cmt_params=deal_comments_urls()
+            cmt_urls='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/DI8G906G0001875P/app/comments/newList'
+            headers={
+                'Accept-Encoding':'gzip',
+                'Connection':'Keep-Alive',
+                'Host':'comment.api.163.com',
+                'X-NR-Trace-Id':'1526813455392_951419013_863213510134567',
+                'User-Agent':'NewsApp/35.1 Android/5.1.1 (samsung/SM-G9350)',
+                'User-C':'6KaB6Ze7',
+                'User-N':'wKq3+ZhKJshqLUdmuO/3GU54yPhI0ZGYXNBL+qbp+gYtkyOvjJ64oHfDp3tOH9cB'
+            }
+            yield scrapy.FormRequest(url=cmt_urls,method='GET',formdata=cmt_params,meta={'pre_data':metadata},headers=headers,callback=self.deal_comments)
 
 
 
-        content=response.xpath('//div[@class="news_content"]/div[@class="news_part_father"]').extract_first()
-        publish_time_raw=response.xpath('//div[@class="news_content"]//p[@class="about_news"]/text()').re('(\d{4}\-\d{1,2}\-\d{1,2} \d{1,2}\:\d{1,2})')
-        publish_user=response.xpath('//div[@class="news_content"]//p[@class="about_news" and not(@style)]/text()').extract_first(default='')
-        img_urls=response.xpath('//div[@class="news_content"]//img/@src').extract()
-        video_urls=response.xpath('//div[@class="news_content"]//source/@src').extract()
-        like_count_raw = response.xpath('//a[@id="news_praise"]/text()').re('\d+')
 
 
-        publish_time=deal_publish_time(publish_time_raw)
-        like_count=deal_like_count(like_count_raw)
 
-
-        article_data={
-            'content':content,
-            'publish_time':publish_time,
-            'publish_user':publish_user,
-            'img_urls':img_urls,
-            'video_urls':video_urls,
-            'like_count':like_count
-        }
-        # article_data.update
-        metadata.update(article_data)
-        url_cmt = 'http://app.thepaper.cn/clt/jsp/v3/contFloorCommentList.jsp'
-        formdata=deal_comments_urls(metadata)
-
-        return scrapy.FormRequest(url=url_cmt,headers=self.mobile_app_headers,meta={'pre_data':metadata,'formdata':formdata},formdata=formdata,callback=self.deal_comments)
 
     def deal_comments(self,response):
         metadata=response.meta['pre_data']
@@ -214,42 +387,37 @@ class wangyi(Spider):
                 return parent_id
 
         datajson = json.loads(response.text)
-        next_cmt_url=datajson['nextUrl']
 
-        for one_cmt in datajson['commentList']:
-            id = one_cmt['commentId']
+        for one_cmt_key in datajson['comments'].keys():
+            publish_user_id=one_cmt_key
+
+            one_cmt=datajson['comments'][one_cmt_key]
+            id = one_cmt['postId']
             content = one_cmt['content']
             publish_user_id = one_cmt['userId']
-            publish_user = one_cmt['userName']
-            like_count = one_cmt['praiseTimes']  # like_count
-            publish_time_raw = one_cmt['pubTime']  # publish_time
-            publish_user_photo = one_cmt['userInfo']['pic']
-            ancestor_id = one_cmt['contId']  #
-            parent_id = one_cmt['parentId']
+            dislike_count=one_cmt['against']
+            publish_time=one_cmt['createTime']
+            like_count=one_cmt['favCount']
+            ip=one_cmt['ip']
+            sharecount=one_cmt['shareCount']
+
+            try:
+                publish_user=one_cmt['user']['nickname']
+            except:
+                publish_user='有态度的网友'
+                continue
+            try:
+                publish_user_id=one_cmt['user']['userId']
+            except:
+                publish_user_id=''
+            try:
+                address=one_cmt['user']['location']
+            except:
+                address=''
+            try:
+                publish_user_photo=one_cmt['avatar']
+            except:
+                publish_user_photo=''
 
 
 
-
-            publish_time=deal_publish_time(publish_time_raw)
-            parent_id=deal_parent_id(parent_id,ancestor_id)
-
-            one_cmt_dict = {
-                'id': id,
-                'content': content,
-                'publish_usr_id': publish_user_id,
-                'publish_user': publish_user,
-                'like_count': like_count,
-                'publish_time': publish_time,
-                'publish_user_photo': publish_user_photo,
-                'ancestor_id': ancestor_id,
-                'parent_id': parent_id
-            }
-            metadata['reply_nodes'].append(one_cmt_dict)
-
-
-        if next_cmt_url:
-            return scrapy.FormRequest(url=next_cmt_url,headers=self.mobile_app_headers,formdata=formdata,meta={'pre_data':metadata,'formdata':formdata,},callback=self.deal_comments,dont_filter=True)
-        else:
-            # print('has finished one----',metadata['url'])
-            return standard(metadata)
-            # yield metadata
