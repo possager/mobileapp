@@ -442,6 +442,7 @@ class wangyi(Spider):
         return scrapy.FormRequest(method='GET',headers=response.headers,url=url_this_cmt,meta={'pre_data':metadata,'formdata':next_cmt_params},formdata=next_cmt_params,callback=self.deal_comments)
 
         # request_meta=response.requests
+    
 
 
 
