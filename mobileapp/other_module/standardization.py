@@ -3,6 +3,7 @@ from mobileapp.items import MobileappItem
 from datetime import datetime
 import time
 import hashlib
+import copy
 
 
 
@@ -59,9 +60,25 @@ def standard(data):#将传入进来的字典标准化成item,这个组件功能�
             print(e)
             return data
 
+    def deal_cmt_publictimestamp(data):
+        data2=copy.copy(data)
+        comment_data=data['reply_nodes']
+        comment_deal_list=[]
+        for oneCmt in comment_data:
+            if 'publicTimestamp' not in oneCmt.keys():
+                publish_time=oneCmt['publish_time']
+                publicTimestamp_tuple=time.strptime(publish_time,'%Y-%m-%d %H:%M:%S')
+                publicTimestamp=time.mktime(publicTimestamp_tuple)
+                oneCmt['publicTimestamp']=int(publicTimestamp)
+
+            comment_deal_list.append(oneCmt)
+        data2['reply_nodes']=comment_deal_list
+        return data2
 
     data=set_params(data)
     data=reSet_reply_count(data)
+    data=deal_cmt_publictimestamp(data)
+
 
     standard_item = MobileappItem()
     for i in data.keys():

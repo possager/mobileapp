@@ -33,200 +33,382 @@ class wangyi(Spider):
 
     def start_requests(self):
 
-        def get_request_for_debug():
-            task_list=[
-                {
-                    'url':'http://c.m.163.com/recommend/getSubDocPic',
-                    'channelId':'T1457068979049',
-                    'abstract':None,
-                    'params':None,
-                    'appname':'wangyi',
-                    'channelName':'视频',
-                    'request_data':{
-                        'channel':'T1457068979049',
-                        'subtab':'Video_Recom',
-                        'size':'10',
-                        'offset':'0',
-                        'fn':'1',
-                        'passport':'',
-                        'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
-                        'lat':'',
-                        'lon':'',
-                        'version':'35.1',
-                        'net':'wifi',
-                        # 'ts':'1526776833',
-                        # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
-                        # 'encryption':'1',
-                        # 'canal':'news_lljc3',
-                        'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                        'open':'',
-                        'openpath':''
-                    }
-                },
-                # {
-                #     'url': 'http://c.m.163.com/recommend/getSubDocPic',
-                #     'channelId': 'T1348647909107',
-                #     'abstract': None,
-                #     'params': None,
-                #     'appname': 'wangyi',
-                #     'channelName': '头条',
-                #     'request_data':{
-                #         'tid':'T1348647909107',
-                #         'from':'toutiao',
-                #         'offset':'20',
-                #         'size':'10',
-                #         'fn':'1',
-                #         'LastStdTime':'1526756888',
-                #         'spestr':'shortnews',
-                #         'prog':'',
-                #         # 'passport':'',
-                #         'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
-                #         # 'lat':'',
-                #         # 'lon':'',
-                #         # 'version':'35.1',
-                #         # 'net':'wifi',
-                #         # 'ts':'1526773568',
-                #         # 'sign':'Kr8H5/efevcqnpXLD6j4pyk/QKy7LsH5M0sslXNj5g148ErR02zJ6/KXOnxX046I',
-                #         # 'encryption':'1',
-                #         'canal':'news_lljc3',
-                #         # 'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                #         # 'open':'',
-                #         # 'openpath':''
-                #     }
-                # },
-                {
-                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
-                    'channelId': 'T1467284926140',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'wangyi',
-                    'channelName': '要闻',
-                    'request_data':{
-                            'from':'T1467284926140',
-                            'size':'10',
-                            'offset':'0',
-                            'fn':'1',
-                            'passport':'',
-                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
-                            'lat':'',
-                            'lon':'',
-                            'version':'35.1',
-                            'net':'wifi',
-                            # 'ts':'1526776833',
-                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
-                            # 'encryption':'1',
-                            # 'canal':'news_lljc3',
-                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                            'open':'',
-                            'openpath':''
-                        }
-                },
-                {
-                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
-                    'channelId': 'T1348649580692',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'wangyi',
-                    'channelName': '科技',
-                    'request_data':{
-                            'from':'T1348649580692',
-                            'size':'10',
-                            'offset':'0',
-                            'fn':'1',
-                            'passport':'',
-                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
-                            'lat':'',
-                            'lon':'',
-                            'version':'35.1',
-                            'net':'wifi',
-                            # 'ts':'1526776833',
-                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
-                            # 'encryption':'1',
-                            # 'canal':'news_lljc3',
-                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                            'open':'',
-                            'openpath':''
-                        }
-                },
-                {
-                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
-                    'channelId': 'T1348648756099',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'wangyi',
-                    'channelName': '财经',
-                    'request_data':{
-                            'from':'T1348648756099',
-                            'size':'10',
-                            'offset':'0',
-                            'fn':'1',
-                            'passport':'',
-                            'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
-                            'lat':'',
-                            'lon':'',
-                            'version':'35.1',
-                            'net':'wifi',
-                            # 'ts':'1526776833',
-                            # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
-                            # 'encryption':'1',
-                            # 'canal':'news_lljc3',
-                            'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                            'open':'',
-                            'openpath':''
-                        }
-
-                },
-                {
-                    'url': 'http://c.m.163.com/recommend/getSubDocPic',
-                    'channelId': 'T1348648141035',
-                    'abstract': None,
-                    'params': None,
-                    'appname': 'wangyi',
-                    'channelName': '军事',
-                    'request_data': {
-                        'from': 'T1348648141035',
-                        'size': '10',
-                        'offset': '0',
-                        'fn': '1',
-                        'passport': '',
-                        'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
-                        'lat': '',
-                        'lon': '',
-                        'version': '35.1',
-                        'net': 'wifi',
-                        # 'ts':'1526776833',
-                        # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
-                        # 'encryption':'1',
-                        # 'canal':'news_lljc3',
-                        'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
-                        'open': '',
-                        'openpath': ''
-                    }
-
-                },
-
-            ]
-            for one_task in task_list:
-                yield scrapy.FormRequest(method='GET',url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_notoutiao,formdata=one_task['request_data'])
-        for i in get_request_for_debug():
-            yield i
-
-        # client=pymongo.MongoClient('178.16.7.86',27017)
-        # COL=client['news']
-        # DOC=COL['channellist']
+        # def get_request_for_debug():
+        #     task_list=[
+        #         {
+        #             'url':'http://c.m.163.com/recommend/getSubDocPic',
+        #             'channelId':'T1457068979049',
+        #             'abstract':None,
+        #             'params':None,
+        #             'appname':'wangyi',
+        #             'channelName':'视频',
+        #             'request_data':{
+        #                 'channel':'T1457068979049',
+        #                 'subtab':'Video_Recom',
+        #                 'size':'10',
+        #                 'offset':'0',
+        #                 'fn':'1',
+        #                 'passport':'',
+        #                 'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #                 'lat':'',
+        #                 'lon':'',
+        #                 'version':'35.1',
+        #                 'net':'wifi',
+        #                 # 'ts':'1526776833',
+        #                 # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+        #                 # 'encryption':'1',
+        #                 # 'canal':'news_lljc3',
+        #                 'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #                 'open':'',
+        #                 'openpath':''
+        #             }
+        #         },
+        #         # {
+        #         #     'url': 'http://c.m.163.com/recommend/getSubDocPic',
+        #         #     'channelId': 'T1348647909107',
+        #         #     'abstract': None,
+        #         #     'params': None,
+        #         #     'appname': 'wangyi',
+        #         #     'channelName': '头条',
+        #         #     'request_data':{
+        #         #         'tid':'T1348647909107',
+        #         #         'from':'toutiao',
+        #         #         'offset':'20',
+        #         #         'size':'10',
+        #         #         'fn':'1',
+        #         #         'LastStdTime':'1526756888',
+        #         #         'spestr':'shortnews',
+        #         #         'prog':'',
+        #         #         # 'passport':'',
+        #         #         'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #         #         # 'lat':'',
+        #         #         # 'lon':'',
+        #         #         # 'version':'35.1',
+        #         #         # 'net':'wifi',
+        #         #         # 'ts':'1526773568',
+        #         #         # 'sign':'Kr8H5/efevcqnpXLD6j4pyk/QKy7LsH5M0sslXNj5g148ErR02zJ6/KXOnxX046I',
+        #         #         # 'encryption':'1',
+        #         #         'canal':'news_lljc3',
+        #         #         # 'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #         #         # 'open':'',
+        #         #         # 'openpath':''
+        #         #     }
+        #         # },
+        #         {
+        #             'url': 'http://c.m.163.com/recommend/getSubDocPic',
+        #             'channelId': 'T1467284926140',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'wangyi',
+        #             'channelName': '要闻',
+        #             'request_data':{
+        #                     'from':'T1467284926140',
+        #                     'size':'10',
+        #                     'offset':'0',
+        #                     'fn':'1',
+        #                     'passport':'',
+        #                     'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #                     'lat':'',
+        #                     'lon':'',
+        #                     'version':'35.1',
+        #                     'net':'wifi',
+        #                     # 'ts':'1526776833',
+        #                     # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+        #                     # 'encryption':'1',
+        #                     # 'canal':'news_lljc3',
+        #                     'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #                     'open':'',
+        #                     'openpath':''
+        #                 }
+        #         },
+        #         {
+        #             'url': 'http://c.m.163.com/recommend/getSubDocPic',
+        #             'channelId': 'T1348649580692',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'wangyi',
+        #             'channelName': '科技',
+        #             'request_data':{
+        #                     'from':'T1348649580692',
+        #                     'size':'10',
+        #                     'offset':'0',
+        #                     'fn':'1',
+        #                     'passport':'',
+        #                     'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #                     'lat':'',
+        #                     'lon':'',
+        #                     'version':'35.1',
+        #                     'net':'wifi',
+        #                     # 'ts':'1526776833',
+        #                     # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+        #                     # 'encryption':'1',
+        #                     # 'canal':'news_lljc3',
+        #                     'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #                     'open':'',
+        #                     'openpath':''
+        #                 }
+        #         },
+        #         {
+        #             'url': 'http://c.m.163.com/recommend/getSubDocPic',
+        #             'channelId': 'T1348648756099',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'wangyi',
+        #             'channelName': '财经',
+        #             'request_data':{
+        #                     'from':'T1348648756099',
+        #                     'size':'10',
+        #                     'offset':'0',
+        #                     'fn':'1',
+        #                     'passport':'',
+        #                     'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #                     'lat':'',
+        #                     'lon':'',
+        #                     'version':'35.1',
+        #                     'net':'wifi',
+        #                     # 'ts':'1526776833',
+        #                     # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+        #                     # 'encryption':'1',
+        #                     # 'canal':'news_lljc3',
+        #                     'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #                     'open':'',
+        #                     'openpath':''
+        #                 }
         #
-        # mongocfg=DOC.find({'appName':'thepaper','recommend':{'$gt':0}})
-        # for one_board in mongocfg:
-        #     one_board_info = {
-        #         'url': one_board['url'],
-        #         'channelId': one_board['channelId'],
-        #         'abstract': None,
-        #         'params': None,
-        #         'appname': one_board['appName'],
-        #         'channelName': one_board['channelName']
-        #     }
-        #     yield scrapy.Request(url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
-        # client.close()
+        #         },
+        #         {
+        #             'url': 'http://c.m.163.com/recommend/getSubDocPic',
+        #             'channelId': 'T1348648141035',
+        #             'abstract': None,
+        #             'params': None,
+        #             'appname': 'wangyi',
+        #             'channelName': '军事',
+        #             'request_data': {
+        #                 'from': 'T1348648141035',
+        #                 'size': '10',
+        #                 'offset': '0',
+        #                 'fn': '1',
+        #                 'passport': '',
+        #                 'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+        #                 'lat': '',
+        #                 'lon': '',
+        #                 'version': '35.1',
+        #                 'net': 'wifi',
+        #                 # 'ts':'1526776833',
+        #                 # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+        #                 # 'encryption':'1',
+        #                 # 'canal':'news_lljc3',
+        #                 'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+        #                 'open': '',
+        #                 'openpath': ''
+        #             }
+        #
+        #         },
+        #
+        #     ]
+        #     for one_task in task_list:
+        #         yield scrapy.FormRequest(method='GET',url=one_task['url'],headers=self.brownser_headers,meta={'pre_data':one_task},callback=self.deal_board_notoutiao,formdata=one_task['request_data'])
+        # for i in get_request_for_debug():
+        #     yield i
+
+        client=pymongo.MongoClient('178.16.7.86',27017)
+        COL=client['news']
+        DOC=COL['channellist']
+
+        mongocfg=DOC.find({'appName':'wangyi','recommend':{'$gt':0}})
+        task_list = {
+            '视频':{
+                'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                'channelId': 'T1457068979049',
+                'abstract': None,
+                'params': None,
+                'appname': 'wangyi',
+                'channelName': '视频',
+                'request_data': {
+                    'channel': 'T1457068979049',
+                    'subtab': 'Video_Recom',
+                    'size': '10',
+                    'offset': '0',
+                    'fn': '1',
+                    'passport': '',
+                    'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                    'lat': '',
+                    'lon': '',
+                    'version': '35.1',
+                    'net': 'wifi',
+                    # 'ts':'1526776833',
+                    # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                    # 'encryption':'1',
+                    # 'canal':'news_lljc3',
+                    'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                    'open': '',
+                    'openpath': ''
+                }
+            },
+            # {
+            #     'url': 'http://c.m.163.com/recommend/getSubDocPic',
+            #     'channelId': 'T1348647909107',
+            #     'abstract': None,
+            #     'params': None,
+            #     'appname': 'wangyi',
+            #     'channelName': '头条',
+            #     'request_data':{
+            #         'tid':'T1348647909107',
+            #         'from':'toutiao',
+            #         'offset':'20',
+            #         'size':'10',
+            #         'fn':'1',
+            #         'LastStdTime':'1526756888',
+            #         'spestr':'shortnews',
+            #         'prog':'',
+            #         # 'passport':'',
+            #         'devId':'iBqHGWB8Yx8XkfAf9bTKRw==',
+            #         # 'lat':'',
+            #         # 'lon':'',
+            #         # 'version':'35.1',
+            #         # 'net':'wifi',
+            #         # 'ts':'1526773568',
+            #         # 'sign':'Kr8H5/efevcqnpXLD6j4pyk/QKy7LsH5M0sslXNj5g148ErR02zJ6/KXOnxX046I',
+            #         # 'encryption':'1',
+            #         'canal':'news_lljc3',
+            #         # 'mac':'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+            #         # 'open':'',
+            #         # 'openpath':''
+            #     }
+            # },
+            '要闻':{
+                'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                'channelId': 'T1467284926140',
+                'abstract': None,
+                'params': None,
+                'appname': 'wangyi',
+                'channelName': '要闻',
+                'request_data': {
+                    'from': 'T1467284926140',
+                    'size': '10',
+                    'offset': '0',
+                    'fn': '1',
+                    'passport': '',
+                    'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                    'lat': '',
+                    'lon': '',
+                    'version': '35.1',
+                    'net': 'wifi',
+                    # 'ts':'1526776833',
+                    # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                    # 'encryption':'1',
+                    # 'canal':'news_lljc3',
+                    'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                    'open': '',
+                    'openpath': ''
+                }
+            },
+            '科技':{
+                'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                'channelId': 'T1348649580692',
+                'abstract': None,
+                'params': None,
+                'appname': 'wangyi',
+                'channelName': '科技',
+                'request_data': {
+                    'from': 'T1348649580692',
+                    'size': '10',
+                    'offset': '0',
+                    'fn': '1',
+                    'passport': '',
+                    'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                    'lat': '',
+                    'lon': '',
+                    'version': '35.1',
+                    'net': 'wifi',
+                    # 'ts':'1526776833',
+                    # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                    # 'encryption':'1',
+                    # 'canal':'news_lljc3',
+                    'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                    'open': '',
+                    'openpath': ''
+                }
+            },
+            '财经':{
+                'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                'channelId': 'T1348648756099',
+                'abstract': None,
+                'params': None,
+                'appname': 'wangyi',
+                'channelName': '财经',
+                'request_data': {
+                    'from': 'T1348648756099',
+                    'size': '10',
+                    'offset': '0',
+                    'fn': '1',
+                    'passport': '',
+                    'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                    'lat': '',
+                    'lon': '',
+                    'version': '35.1',
+                    'net': 'wifi',
+                    # 'ts':'1526776833',
+                    # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                    # 'encryption':'1',
+                    # 'canal':'news_lljc3',
+                    'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                    'open': '',
+                    'openpath': ''
+                }
+
+            },
+            '军事':{
+                'url': 'http://c.m.163.com/recommend/getSubDocPic',
+                'channelId': 'T1348648141035',
+                'abstract': None,
+                'params': None,
+                'appname': 'wangyi',
+                'channelName': '军事',
+                'request_data': {
+                    'from': 'T1348648141035',
+                    'size': '10',
+                    'offset': '0',
+                    'fn': '1',
+                    'passport': '',
+                    'devId': 'iBqHGWB8Yx8XkfAf9bTKRw==',
+                    'lat': '',
+                    'lon': '',
+                    'version': '35.1',
+                    'net': 'wifi',
+                    # 'ts':'1526776833',
+                    # 'sign':'Vu494rafuRoS2l0D7iED2MrT0Wprwf8FgssWwIQKURl48ErR02zJ6/KXOnxX046I',
+                    # 'encryption':'1',
+                    # 'canal':'news_lljc3',
+                    'mac': 'Z8tAAqZCtjpSp6VxygeOyjC0ruPUyXM4Jwce4E9oM30=',
+                    'open': '',
+                    'openpath': ''
+                }
+
+            },
+
+        }
+
+        for one_board in mongocfg:
+            # one_board_info = {
+            #     'url': one_board['url'],
+            #     'channelId': one_board['channelId'],
+            #     'abstract': None,
+            #     'params': None,
+            #     'appname': one_board['appName'],
+            #     'channelName': one_board['channelName']
+            # }
+            try:
+                appName=one_board['channelName']
+                one_board_info=task_list[appName]
+
+
+                # yield scrapy.Request(url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board)
+                yield scrapy.FormRequest(method='GET',url=one_board_info['url'],headers=self.brownser_headers,meta={'pre_data':one_board_info},callback=self.deal_board_notoutiao,formdata=one_board_info['request_data'])
+            except Exception as e:
+                print(e)
+
+        client.close()
 
     def deal_board_notoutiao(self,response):
         '''
@@ -240,9 +422,17 @@ class wangyi(Spider):
 
         metadata=response.meta['pre_data']
 
-        def deal_content_url(data):
+        def deal_content_url(data,onearticle):
             id=data['id']
-            return 'https://c.m.163.com/nc/article/'+str(id)+'/full.html'
+            if 'tags' in onearticle.keys() and '视频' in onearticle['tags']:
+                url2=onearticle['videoinfo']['mp4Hd_url']
+                url1=None
+                return (url1,url2)
+            else:
+                url1= 'https://c.m.163.com/nc/article/'+str(id)+'/full.html'
+                url2= 'https://c.m.163.com/news/a/'+str(id)+'.html?spss=newsapp'
+                return (url1,url2)
+                
 
         datajson=json.loads(response.text)
 
@@ -278,8 +468,9 @@ class wangyi(Spider):
 
                 metadata_in_for.update(one_article_dict)
 
-                url=deal_content_url(metadata_in_for)
-                metadata_in_for['url']=url
+            
+                url=deal_content_url(metadata_in_for,one_article)
+                metadata_in_for['url']=url[1]
                 headers={
                         'Accept-Encoding':'gzip',
                         'Connection':'Keep-Alive',
@@ -288,9 +479,31 @@ class wangyi(Spider):
                         'User-Agent':'NewsApp/35.1 Android/5.1.1 (samsung/SM-G9350)',
                         'User-C':'5aix5LmQ',
                     }
-
-                yield scrapy.Request(url=url,meta={'pre_data':metadata_in_for},headers=headers,callback=self.deal_content)
-
+                if url[0]:
+                    yield scrapy.Request(url=url[0],meta={'pre_data':metadata_in_for},headers=headers,callback=self.deal_content)
+                else:
+                    def deal_comments_urls():
+                        post_data = {
+                            'offset':'0',
+                            'limit':'20',
+                            'showLevelThreshold':'5',
+                            'headLimit':'3',
+                            'tailLimit':'2',
+                            }
+                        return post_data
+                    
+                    cmt_urls='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/'+metadata['id']+'/app/comments/newList'
+                    headers={
+                        'Accept-Encoding':'gzip',
+                        'Connection':'Keep-Alive',
+                        'Host':'comment.api.163.com',
+                        'X-NR-Trace-Id':'1526813455392_951419013_863213510134567',
+                        'User-Agent':'NewsApp/35.1 Android/5.1.1 (samsung/SM-G9350)',
+                        'User-C':'6KaB6Ze7',
+                        'User-N':'wKq3+ZhKJshqLUdmuO/3GU54yPhI0ZGYXNBL+qbp+gYtkyOvjJ64oHfDp3tOH9cB'
+                    }
+                    yield scrapy.FormRequest(url=cmt_urls,method='GET',formdata=deal_comments_urls(),meta={'pre_data':metadata_in_for,'formdata':deal_comments_urls()},headers=headers,callback=self.deal_comments)
+                    
 
 
 
@@ -374,22 +587,21 @@ class wangyi(Spider):
 
     def deal_comments(self,response):
         metadata=response.meta['pre_data']
-        reply_nodes=[]
 
         def deal_cmt_params_new(cmt_params):
             offset_pre=cmt_params['offset']
-            offset_now=int(offset_pre)+20
+            offset_now=str(int(offset_pre)+20)
             cmt_params['offset']=offset_now
             return cmt_params
 
         datajson = json.loads(response.text)
 
-        if 'comments' in datajson.keys():
+        if 'comments' in datajson.keys() and datajson['comments'].keys():
             pre_cmt_params=response.meta['formdata']
             url_this_cmt='https://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/'+metadata['id']+'/app/comments/newList'
             next_cmt_params=deal_cmt_params_new(pre_cmt_params)
         else:
-            return metadata
+            return standard(metadata)
 
 
         for one_cmt_key in datajson['comments'].keys():
@@ -436,13 +648,17 @@ class wangyi(Spider):
                     'share_count':sharecount
                 }
             }
-            reply_nodes.append(one_cmt_dict)
+            metadata['reply_nodes'].append(one_cmt_dict)
 
-
-        return scrapy.FormRequest(method='GET',headers=response.headers,url=url_this_cmt,meta={'pre_data':metadata,'formdata':next_cmt_params},formdata=next_cmt_params,callback=self.deal_comments)
+        headers_cmt_next={
+                'Accept-Encoding':'gzip',
+                'Connection':'Keep-Alive',
+                'Host':'comment.api.163.com',
+                'X-NR-Trace-Id':'1526813455392_951419013_863213510134567',
+                'User-Agent':'NewsApp/35.1 Android/5.1.1 (samsung/SM-G9350)',
+                'User-C':'6KaB6Ze7',
+                'User-N':'wKq3+ZhKJshqLUdmuO/3GU54yPhI0ZGYXNBL+qbp+gYtkyOvjJ64oHfDp3tOH9cB'
+            }
+        return scrapy.FormRequest(method='GET',headers=headers_cmt_next,url=url_this_cmt,meta={'pre_data':metadata,'formdata':next_cmt_params},formdata=next_cmt_params,callback=self.deal_comments)
 
         # request_meta=response.requests
-    
-
-
-

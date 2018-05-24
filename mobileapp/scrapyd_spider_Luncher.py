@@ -94,4 +94,4 @@ if __name__ == '__main__':
 
     while True:
         start_all_spider()
-        time.sleep(10*60)
+        time.sleep(5*60)
