@@ -8,6 +8,7 @@ from datetime import timedelta
 import json
 from mobileapp.other_module.standardization import standard
 import copy
+import re
 import urllib.parse
 
 
@@ -161,13 +162,43 @@ class sohu(Spider):
 
 
         def deal_publish_time(publicTimestamp):
-            time_tuple=time.localtime(int(publicTimestamp/1000))
+            time_tuple=time.localtime(int(publicTimestamp))
             publish_time=time.strftime('%Y-%m-%d %H:%M:%S',time_tuple)
             return publish_time
 
+        def deal_params_for_content(data):
+            content_params = {
+                'channelId': '1',
+                'apiVersion': '41',
+                'gid': '-1',
+                'imgTag': '1',
+                'newsId': '274508914',
+                'openType': '',
+                'u': '1',
+                'p1': 'NjM5Nzk4NjA1NTAzNTIwMzYxMQ%3D%3D',
+                'pid': '-1',
+                'recommendNum': '3',
+                'refer': '130',
+                'rt': 'json',
+                'showSdkAd': '1',
+                'moreCount': '8',
+                'articleDebug': '0',
+            }
+            content_params['newsId']=data['id']
+            content_params['channelId']=data['channelId']
+
+            return content_params
+
+
 
         datajson=json.loads(response.text)
-        for one_article in datajson['recommendArticles']:
+        if 'recommendArticles' in datajson.keys():
+            allarticle =datajson['recommendArticles']
+        elif 'articles' in datajson.keys():
+            allarticle=datajson['articles']
+        else:
+            return
+        for one_article in allarticle:
             if one_article['editNews']:#有广告，广告该字段为false
 
                 metadata_in_for=copy.copy(metadata)
@@ -175,9 +206,12 @@ class sohu(Spider):
 
 
                 _id=one_article['newsId']
-                publicTimestamp=int(one_article['time']/1000)
+                publicTimestamp=int(int(one_article['time'])/1000)
                 title=one_article['title']
-                source=one_article['media']
+                try:
+                    source=one_article['media']
+                except Exception as e:
+                    source=''
 
 
 
@@ -189,17 +223,25 @@ class sohu(Spider):
                     'title':title,
                     'publicTimestamp':publicTimestamp,
                     'publish_time':publish_time,
-                    'source':source
+                    'source':source,
+                    'url':'https://3g.k.sohu.com/t/n'+str(_id)
                 }
                 metadata_in_for.update(one_article_dict)
 
-                yield scrapy.Request(url=url,meta={'pre_data':metadata_in_for},headers=self.brownser_headers,callback=self.deal_content)
+                content_parms=deal_params_for_content(metadata_in_for)
+                article_url='https://api.k.sohu.com/api/news/v5/article.go'
 
+                headers_content={
+                        'Host':'api.k.sohu.com',
+                        'Connection':'close',
+                        'Accept':'*/*',
+                        'X-Requested-With':'XMLHttpRequest',
+                        'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G9350 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36 JsKit/1.0 (Android);',
+                        'Referer':'https://api.k.sohu.com/h5apps/newssdk.sohu.com/modules/article/article.html?newsId=274508914&from=channel&channelId=1&token=1527148981565&tracker=type:recom,engine:getui_1.0_v4&position=7&page=1&CDN_URL=https%3A%2F%2Fzcache.k.sohu.com%2Fapi%2Fnews%2Fcdn%2Fv5%2Farticle.go%2F274508914%2F0%2F0%2F0%2F3%2F1%2F12%2F41%2F3%2F1%2F1%2F1527068817021.json&isHasSponsorships=1&templateType=1&newsType=3&updateTime=1527068817021&isRecom=1',
+                        'Accept-Language':'zh-CN,en-US;q=0.8',
+                    }
 
-
-
-
-
+                yield scrapy.FormRequest(method='GET',url=article_url,meta={'pre_data':metadata_in_for},headers=headers_content,formdata=content_parms,callback=self.deal_content)
 
 
     def deal_content(self,response):
@@ -207,26 +249,91 @@ class sohu(Spider):
         metadata['reply_nodes']=[]
 
 
-        def deal_comment_urls(news_id):
-            # comment_url="http://interfacev5.vivame.cn/x1-interface-v5/json/commentlist.json?platform=android&installversion=6.2.2.2&channelno=AZWMA2320480100&mid=5284047f4ffb4e04824a2fd1d1f0cd62&uid=3125&sid=f4umcvbs-4154-495a-b13f-2245a758834a&type=0&id=" + str(news_id) + "&pageindex=0&pagesize=20&commentType=4"
-            comment_url2='https://interfacev5.vivame.net.cn/x1-interface-v5/json/commentlist.json?uid=15155081&platform=android&installversion=7.0.6&channelno=VIVAA2320480100&sid=&latlng=31.247631,121.497856&id='+str(news_id)+'&type=&pageindex=1&pagesize=10&commentType=4&appId=83ee783f8111b5ec3f0d888d0e5a0381&tk=01iofi8o-64oe-j61l-i389-3e66bc946ff9&_='+str(time.time()*1000)
+        def deal_comment_request_params(news_id):
+            # # comment_url="http://interfacev5.vivame.cn/x1-interface-v5/json/commentlist.json?platform=android&installversion=6.2.2.2&channelno=AZWMA2320480100&mid=5284047f4ffb4e04824a2fd1d1f0cd62&uid=3125&sid=f4umcvbs-4154-495a-b13f-2245a758834a&type=0&id=" + str(news_id) + "&pageindex=0&pagesize=20&commentType=4"
+            # comment_url2='https://interfacev5.vivame.net.cn/x1-interface-v5/json/commentlist.json?uid=15155081&platform=android&installversion=7.0.6&channelno=VIVAA2320480100&sid=&latlng=31.247631,121.497856&id='+str(news_id)+'&type=&pageindex=1&pagesize=10&commentType=4&appId=83ee783f8111b5ec3f0d888d0e5a0381&tk=01iofi8o-64oe-j61l-i389-3e66bc946ff9&_='+str(time.time()*1000)
+            request_dict={
+                'busiCode':'2',
+                'apiVersion':'41',
+                'channelId':'1',
+                'cursorId':'',
+                # 'from':'1527217578021',
+                # 'gid':'x011060802ff0dc5132b6d42f00069cd1e654860b7f5',
+                'id':str(news_id),
+                'openType':'',
+                # 'p1':'NjM5Nzk4NjA1NTAzNTIwMzYxMQ%3D%3D',
+                'u':'1',
+                'page':'1',
+                'pid':'-1',
+                'position':'4',
+                'refer':'3',
+                'rollType':'1',
+                'rt':'json',
+                'size':'10',
+                'source':'news',
+                'subId':'130152',
+                'type':'5',
+                'refererType':'',
+                'articleDebug':'',
 
-            return comment_url2
+            }
+            return request_dict
 
+        def deal_img_urls(picture_list):
+            img_urls2=[]
 
-        content=response.xpath('//div[@id="aMain"]/div[@class="text"]').extract()
-        img_urls=response.xpath('//div[@id="aMain"]/div[@class="text"]//img/@data-src').extract()
+            for one_img in picture_list:
+                try:
+                    img_urls2.append(one_img['pic'])
+                except:
+                    pass
+            return img_urls2
+
+        def deal_content(content,img_urls):
+            img_repl_dict = {}
+            for i in range(len(img_urls)):
+                imgsub_dict = {
+                    '<image_' + str(i) + '></image_' + str(i) + '>': '<img src="' + img_urls[i] + '"></img>'
+                }
+                img_repl_dict.update(imgsub_dict)
+
+            def replaceimg(img_url):
+                print(img_url)
+                img_urls = img_url.group(0)
+                return img_repl_dict[img_urls]
+
+            content2 = re.sub('\<image\_\d*\>\<\/image\_\d*\>', replaceimg, content)
+            return content2
+
+        datajson=json.loads(response.text)
+
+        try:
+            content_raw=datajson['content']
+            img_urls=deal_img_urls(datajson['photos'])
+            content=deal_content(content_raw,img_urls)
+
+        except:
+            content=None
+            img_urls=[]
 
 
         content_dict={
             'content':content,
-            'img_urls':img_urls
+            'img_urls':img_urls,
+            'reply_nodes':[]
         }
 
         metadata.update(content_dict)
 
-        comment_urls=deal_comment_urls(metadata['id'])
-        yield scrapy.Request(url=comment_urls,headers=self.mobile_app_headers,meta={'pre_data':metadata},callback=self.deal_comments)
+        comment_parms=deal_comment_request_params(metadata['id'])
+        comment_urls='https://api.k.sohu.com/api/comment/getCommentListByCursor.go'
+        headers={
+    'Connection':'close',
+    'Accept':'*/*',
+    'X-Requested-With':'XMLHttpRequest',
+    'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G9350 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36 JsKit/1.0 (Android);',
+}
+        yield scrapy.FormRequest(method='GET',url=comment_urls,headers=headers,meta={'pre_data':metadata,'formdata':comment_parms},callback=self.deal_comments,formdata=comment_parms)
 
 
 
@@ -240,42 +347,57 @@ class sohu(Spider):
             publish_time=time.strftime('%Y-%m-%d %H:%M:%S',time_tuple)
             return publish_time
 
-        def deal_comment_url_next(cmt_url):
-            cmt_url_splited=cmt_url.split('&pageindex=')
-            page_STR_int=cmt_url_splited[1].split('&')[0]
-            cmt_url_next=cmt_url_splited[0]+'&pageindex='+str(int(page_STR_int)+1)+'&pagesize=10&commentType=4&appId=83ee783f8111b5ec3f0d888d0e5a0381&tk=01iofi8o-64oe-j61l-i389-3e66bc946ff9&_='+str(time.time()*1000)
+        def deal_comment_params_next(comment_data):
+            page=comment_data['page']
+            pageNext=str(int(page)+1)
+            comment_data['page']=pageNext
 
-            return cmt_url_next
+            return comment_data
+
+
         datajson=json.loads(response.text)
-        for one_cmt in datajson['data']:
-            _id=one_cmt['id']
-            publicTimestamp=int(one_cmt['createdAt']/1000)
-            content=one_cmt['content']
-            publish_user=one_cmt['communityUser']['nickName']
-            publish_user_id=one_cmt['communityUser']['uid']
-            publish_user_photo=one_cmt['communityUser']['headIcon']
-            like_count=one_cmt['likeInfo']['likeCount']
+        if 'response' in datajson.keys():
+            if 'commentList' in datajson['response'].keys():
+                for one_cmt in  datajson['response']['commentList']:
+                    publish_user=one_cmt['author']
+                    address=one_cmt['city']
+                    _id=one_cmt['commentId']
+                    content=one_cmt['content']
+                    publicTimestamp=one_cmt['ctime']
+                    like_count=one_cmt['digNum']
+                    passport=one_cmt['passport']
+                    reply_count=one_cmt['replyCount']
 
+                    publish_time=deal_publish_time(int(int(publicTimestamp)/1000))
 
+                    cmtDict={
+                        'id':_id,
+                        'publish_user':publish_user,
+                        'content':content,
+                        'publicTimestamp':publicTimestamp,
+                        'like_count':like_count,
+                        'publish_time':publish_time,
+                        'reply_count':reply_count,
+                        'params':{
+                            'address':address,
+                            'passport':passport,
+                        }
+                    }
 
-            publish_time=deal_publish_time(publicTimestamp)
+                    metadata['reply_nodes'].append(cmtDict)
+            else:
+                return standard(metadata)
+        else:
+            return standard(metadata)
 
-            one_comment_dict={
-                'id':_id,
-                'publicTimestamp':publicTimestamp,
-                'content':content,
-                'publish_user':publish_user,
-                'publish_user_id':publish_user_id,
-                'publish_user_photo':publish_user_photo,
-                'like_count':like_count,
-                'publish_time':publish_time,
-                'parent_id':metadata['id'],
-                'ancestor_id':metadata['id']
-            }
-
-            metadata['reply_nodes'].append(one_comment_dict)
-
-
-        if len(datajson['data'])==10:
-            return scrapy.Request(url=deal_comment_url_next(response.url),headers=self.mobile_app_headers,meta={'pre_data':metadata},callback=self.deal_comments)
+        if len(datajson['response']['commentList'])==10:
+            comment_next_params=deal_comment_params_next(response.meta['formdata'])
+            url_comment='https://api.k.sohu.com/api/comment/getCommentListByCursor.go'
+            headers={
+    'Connection':'close',
+    'Accept':'*/*',
+    'X-Requested-With':'XMLHttpRequest',
+    'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G9350 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36 JsKit/1.0 (Android);',
+}
+            return scrapy.FormRequest(method='GET',url=url_comment,headers=headers,meta={'pre_data':metadata,'formdata':comment_next_params},callback=self.deal_comments,formdata=comment_next_params)
         return standard(metadata)

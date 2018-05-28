@@ -75,9 +75,18 @@ def standard(data):#将传入进来的字典标准化成item,这个组件功能�
         data2['reply_nodes']=comment_deal_list
         return data2
 
+    def make_comment_field_standroid(data):
+        comment_list_stand = []
+        for onecomment in data['reply_nodes']:
+            standard_comment = standroid_comment(onecomment)
+            comment_list_stand.append(standard_comment)
+        data['reply_nodes'] = comment_list_stand
+        return data
+
     data=set_params(data)
     data=reSet_reply_count(data)
     data=deal_cmt_publictimestamp(data)
+    data=make_comment_field_standroid(data)
 
 
     standard_item = MobileappItem()
@@ -90,3 +99,42 @@ def standard(data):#将传入进来的字典标准化成item,这个组件功能�
 
 
     return standard_item
+
+
+def standroid_comment(comment_dict):
+    '''
+    有关publish_time和publicTimestamp的转换在spider完成，在这里将其规范化比较麻烦。
+    :param comment_dict:
+    :return:
+    '''
+
+    standroid_comment_dict={
+        'publish_time':'',
+        'publicTimestamp':'',
+        'reply_nodes':[],
+        'reply_count':0,
+        'publish_user':'',
+        'ancestor_id':'',
+        'parent_id':'',
+        'publish_user_id':'',
+        'news_id':'',
+        'like_count':0,
+        'content':'',
+        'publish_user_photo':'',
+        'Id':'',
+        'read_count':0,
+        'reproduce_count':0,
+        'dislike_count':0,
+        'params':{}
+    }
+
+    standroid_comment_dict2={}
+
+    for one_key in standroid_comment_dict.keys():
+        if one_key not in comment_dict.keys():
+            standroid_comment_dict2[one_key]=standroid_comment_dict[one_key]
+        else:
+            standroid_comment_dict2[one_key]=comment_dict[one_key]
+
+    return standroid_comment_dict2
+
