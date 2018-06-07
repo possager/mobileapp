@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76d47631-6489-4cc6-83aa-021f5aee5289" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/items.py" afterPath="$PROJECT_DIR$/mobileapp/items.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" afterPath="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" afterPath="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/spiders/sohu.py" afterPath="$PROJECT_DIR$/mobileapp/spiders/sohu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py" afterPath="$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py" afterPath="$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,36 +45,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sohu.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/spiders/sohu.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1938">
-              <caret line="399" column="37" lean-forward="false" selection-start-line="399" selection-start-column="26" selection-end-line="399" selection-end-column="37" />
-              <folding>
-                <element signature="e#20#53#0" expanded="true" />
-                <element signature="e#1606#3160#0" expanded="false" />
-                <element signature="e#1922#1925#0" expanded="false" />
-                <element signature="e#3202#4001#0" expanded="false" />
-                <element signature="e#4388#4437#0" expanded="false" />
-                <element signature="e#5780#9250#0" expanded="false" />
-                <element signature="e#6084#6775#0" expanded="false" />
-                <element signature="e#9432#10957#0" expanded="false" />
-                <element signature="e#11012#11218#0" expanded="false" />
-                <element signature="e#11276#11820#0" expanded="false" />
-                <element signature="e#11354#11546#0" expanded="false" />
-                <element signature="e#11891#12032#0" expanded="false" />
-                <element signature="e#12061#12097#0" expanded="false" />
-                <element signature="e#12121#12225#0" expanded="false" />
-                <element signature="e#12432#12702#0" expanded="false" />
-                <element signature="e#13036#13184#0" expanded="false" />
-                <element signature="e#13250#13388#0" expanded="false" />
-                <element signature="e#13625#14693#0" expanded="false" />
-                <element signature="e#15055#15385#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="standardization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/other_module/standardization.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -104,52 +72,51 @@
       <file leaf-file-name="Push_Data2Mongo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="57" column="45" lean-forward="false" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+            <state relative-caret-position="680">
+              <caret line="61" column="75" lean-forward="true" selection-start-line="61" selection-start-column="75" selection-end-line="61" selection-end-column="75" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#111#703#0" expanded="false" />
-                <element signature="e#1677#1910#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="execjs_cal_as_cp_for_JinRiTouTiao.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/execjs_cal_as_cp_for_JinRiTouTiao.py">
+      <file leaf-file-name="scrapyd_loader.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3230">
-              <caret line="190" column="51" lean-forward="false" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="51" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getCommentForJinitoutiaoSpeciallyDaily.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/getCommentForJinitoutiaoSpeciallyDaily.py">
+      <file leaf-file-name="scrapyd_spider_Luncher.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3162">
-              <caret line="188" column="18" lean-forward="false" selection-start-line="188" selection-start-column="17" selection-end-line="188" selection-end-column="18" />
+            <state relative-caret-position="726">
+              <caret line="92" column="29" lean-forward="false" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changdu.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/spiders/changdu.py">
+      <file leaf-file-name="lunch_jinritoutiao.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2924">
-              <caret line="181" column="32" lean-forward="false" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
+            <state relative-caret-position="459">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jinritoutiao.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jinritoutiao.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
+            <state relative-caret-position="312">
+              <caret line="448" column="0" lean-forward="true" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
               <folding>
                 <element signature="e#1488#1518#0" expanded="false" />
                 <element signature="e#5860#5934#0" expanded="false" />
@@ -165,11 +132,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdjustCmtNumJinritoutiao.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="35" column="83" lean-forward="false" selection-start-line="35" selection-start-column="83" selection-end-line="35" selection-end-column="83" />
+            <state relative-caret-position="17">
+              <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="middlewares.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/middlewares.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="91" column="37" lean-forward="false" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -314,42 +301,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_func" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobileapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -363,11 +314,12 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\project_coding\Mobile_app\mobileapp\mobileapp" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\project_coding\Mobile_app\mobileapp\mobileapp\notice" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\project\mobileapp\mobileapp" />
+      <recent name="F:\project_coding\Mobile_app\mobileapp\mobileapp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -847,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527499910856</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="修改了搜狐的图片无法显示bug">
+      <created>1528339345033</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1528339345033</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1019,11 +978,6 @@
           <url>file://$PROJECT_DIR$/mobileapp/test_func/test_dict.py</url>
           <line>36</line>
           <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/spiders/huanqiu.py</url>
@@ -1244,13 +1198,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/python36/Lib/site-packages/scrapy/core/engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/python36/Lib/site-packages/scrapy/utils/reactor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -1299,27 +1246,6 @@
             <element signature="e#5303#5455#0" expanded="false" />
             <element signature="e#5512#5654#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="91" column="37" lean-forward="false" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1511,14 +1437,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="92" column="29" lean-forward="false" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/python36/Lib/site-packages/scrapy/spidermiddlewares/depth.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -1560,13 +1478,6 @@
             <element signature="e#19#4247#0" expanded="false" />
             <element signature="e#4311#8134#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1630,18 +1541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="57" column="45" lean-forward="false" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#111#703#0" expanded="false" />
-            <element signature="e#1677#1910#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/spiders/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1671,8 +1570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
+        <state relative-caret-position="312">
+          <caret line="448" column="0" lean-forward="true" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
           <folding>
             <element signature="e#1488#1518#0" expanded="false" />
             <element signature="e#5860#5934#0" expanded="false" />
@@ -1684,6 +1583,65 @@
             <element signature="e#16935#17002#0" expanded="false" />
             <element signature="e#17457#17988#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/middlewares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="91" column="37" lean-forward="false" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="61" column="75" lean-forward="true" selection-start-line="61" selection-start-column="75" selection-end-line="61" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#111#703#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="92" column="29" lean-forward="false" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

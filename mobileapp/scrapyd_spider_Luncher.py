@@ -4,8 +4,8 @@ import json
 import time
 
 
-console_url='http://127.0.0.1:6800'
-# console_url='http://178.16.7.121:6800'#remote
+# console_url='http://127.0.0.1:6800'
+console_url='http://178.16.7.121:6800'#remote
 
 def get_all_spiders():
     response1=requests.get(url=console_url+'/listspiders.json?',params={'project':'default'})
@@ -44,6 +44,20 @@ def cancel_job(jobId=None,project='default'):
 
 
 def get_all_Jobs(project='default'):
+    '''
+    @input: default project
+    @return: jinritoutiao_dict:,such as this:
+    [
+        {
+            'project':'default',
+            'spider':'spider_name',
+            'id':'jobid',
+            'pid':'spiderJob_pid_on_Linux'
+        },
+        {...},
+        {...}
+    ]
+    '''
     all_job_url=console_url+'/listjobs.json'
     all_job_dict={
         'project':project
@@ -90,8 +104,8 @@ if __name__ == '__main__':
     # start_a_spider_job(spidername='huanqiu')
     # cancel_job(jobId='1c2691c032d611e8b1ca30b49e7b08df')
     # get_all_Jobs()
-    # cancel_all_spider_job()
+    cancel_all_spider_job()
 
-    while True:
-        start_all_spider()
-        time.sleep(5*60)
+    # while True:
+    #     start_all_spider()
+    #     time.sleep(5*60)
