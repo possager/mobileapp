@@ -31,13 +31,13 @@ while True:
 
 
     today_date=time.strftime('%Y-%m-%d',time.localtime(time.time()))+' 00:00:00'
-    num_total=newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-05-06 00:00:00'}}).count()
+    num_total=newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-07-06 00:00:00'}}).count()
     print(num_total)
-    for i in newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-05-06 00:00:00'}}):
+    for i in newsdata.find({'appname':'jinritoutiao','publish_time':{'$gt':'2018-07-06 00:00:00'}}):
         urlmd5_newsId=i['urlmd5']
 
         reply_count=cmtDB.find({'news_id':urlmd5_newsId}).count()
-        newsdata.update({'_id':i['_id']},{'$set':{'reply_count':reply_count}},)
+        newsdata.update({'_id':i['_id']},{'$set':{'reply_count':reply_count}})
         logmsg='has adjusted a reoly_count in jinritoutiao_comment,id is %s,reply_count is %s'%(str(i['_id']),str(reply_count))
         logger.warning(msg=logmsg)
 

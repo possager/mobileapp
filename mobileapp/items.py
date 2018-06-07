@@ -34,40 +34,41 @@ class MobileappItem(scrapy.Item):
 
 
     img_urls = scrapy.Field()  # 图片urls,string数组类型
-    publish_user_id = scrapy.Field()  # 用户id
+    # publish_user_id = scrapy.Field()  # 用户id
     reply_count = scrapy.Field()  # 回复数
 
     publish_user_photo = scrapy.Field()  # 用户头像
     read_count = scrapy.Field()  # 阅读量
-    like_count = scrapy.Field()  # 赞成数
+    # like_count = scrapy.Field()  # 赞成数
     publish_user_jsonid = scrapy.Field()  # 用户的jsonid(对应着用户json信息的命名：平台名称（或者英文）_用户id)
     # txpath = scrapy.Field()  # 图片存放服务器(针对微信)
-    reply_nodes = scrapy.Field()  # jsonArray类型变量,结构和当前json结构一样
+    # reply_nodes = scrapy.Field()  # jsonArray类型变量,结构和当前json结构一样
     reproduce_count = scrapy.Field()  # 转载数
     ancestor_id = scrapy.Field()  # 祖先借点的ID（回复和回复的回复必填）
     parent_id = scrapy.Field()  # 父集ID（如果是回复就填，没有就不填）
-    like_nodes = scrapy.Field()  # jsonArray类型变量，里面的结构和当前json结构一样
+    # like_nodes = scrapy.Field()  # jsonArray类型变量，里面的结构和当前json结构一样
     video_urls = scrapy.Field()  # 视频urls,string数组类型
     # is_pic = scrapy.Field()  # 是否包含图片(针对微信)
     dislike_count = scrapy.Field()  # 反对数
     params=scrapy.Field()
 
 
-class mobileAppUserInfo(scrapy.Field):
-    publish_user = scrapy.Field(output_processor=TakeFirst())  # 用户名
-    publish_user_photo = scrapy.Field(output_processor=TakeFirst())  # 用户头像
-    publish_user_id = scrapy.Field(output_processor=TakeFirst())  # 发布用户Id
-    url = scrapy.Field(output_processor=TakeFirst())  # 用户主页Url
-    fans_count = scrapy.Field(output_processor=TakeFirst())  # 粉丝数量
-    follow_count = scrapy.Field(output_processor=TakeFirst())  # 关注数量
-    friend_count = scrapy.Field(output_processor=TakeFirst())  # 好友数量
-    sex = scrapy.Field(output_processor=TakeFirst())  # 性别
-    register_time = scrapy.Field(output_processor=TakeFirst())  # 注册时间
-    article_count = scrapy.Field(output_processor=TakeFirst())  # 发帖数（微博数、主题数）
-    reply_article_count = scrapy.Field(output_processor=TakeFirst())  # 回帖数量
-    visit_count = scrapy.Field(output_processor=TakeFirst())  # 主页访问数量
-    group_name = scrapy.Field()  # 用户所属组
-    introduction = scrapy.Field(output_processor=TakeFirst())  # 签名或者简介
-    fans_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]
-    follow_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]
-    friend_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]
+# class mobileAppUserInfo(scrapy.Field):
+#
+#     publish_user = scrapy.Field(output_processor=TakeFirst())  # 用户名
+#     publish_user_photo = scrapy.Field(output_processor=TakeFirst())  # 用户头像
+#     publish_user_id = scrapy.Field(output_processor=TakeFirst())  # 发布用户Id
+#     url = scrapy.Field(output_processor=TakeFirst())  # 用户主页Url
+#     fans_count = scrapy.Field(output_processor=TakeFirst())  # 粉丝数量
+#     follow_count = scrapy.Field(output_processor=TakeFirst())  # 关注数量
+#     friend_count = scrapy.Field(output_processor=TakeFirst())  # 好友数量
+#     sex = scrapy.Field(output_processor=TakeFirst())  # 性别
+#     register_time = scrapy.Field(output_processor=TakeFirst())  # 注册时间
+#     article_count = scrapy.Field(output_processor=TakeFirst())  # 发帖数（微博数、主题数）
+#     reply_article_count = scrapy.Field(output_processor=TakeFirst())  # 回帖数量
+#     visit_count = scrapy.Field(output_processor=TakeFirst())  # 主页访问数量
+#     group_name = scrapy.Field()  # 用户所属组
+#     introduction = scrapy.Field(output_processor=TakeFirst())  # 签名或者简介
+#     fans_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]
+#     follow_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]
+#     friend_details = scrapy.Field()  # 包含字段[id,用户名，头像，账户主页]

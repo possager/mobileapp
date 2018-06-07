@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76d47631-6489-4cc6-83aa-021f5aee5289" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobileapp/test_func/test_find_sohu_cmt.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobileapp/test_func/testresub.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/main.py" afterPath="$PROJECT_DIR$/mobileapp/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/other_module/standardization.py" afterPath="$PROJECT_DIR$/mobileapp/other_module/standardization.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/items.py" afterPath="$PROJECT_DIR$/mobileapp/items.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" afterPath="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" afterPath="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/spiders/sohu.py" afterPath="$PROJECT_DIR$/mobileapp/spiders/sohu.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,21 +47,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sohu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sohu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/spiders/sohu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="402" column="33" lean-forward="true" selection-start-line="402" selection-start-column="33" selection-end-line="402" selection-end-column="33" />
+            <state relative-caret-position="1938">
+              <caret line="399" column="37" lean-forward="false" selection-start-line="399" selection-start-column="26" selection-end-line="399" selection-end-column="37" />
               <folding>
                 <element signature="e#20#53#0" expanded="true" />
                 <element signature="e#1606#3160#0" expanded="false" />
@@ -73,35 +62,17 @@
                 <element signature="e#6084#6775#0" expanded="false" />
                 <element signature="e#9432#10957#0" expanded="false" />
                 <element signature="e#11012#11218#0" expanded="false" />
+                <element signature="e#11276#11820#0" expanded="false" />
                 <element signature="e#11354#11546#0" expanded="false" />
-                <element signature="e#12062#12098#0" expanded="false" />
-                <element signature="e#12433#12703#0" expanded="false" />
-                <element signature="e#13627#14695#0" expanded="false" />
-                <element signature="e#15057#15327#0" expanded="false" />
+                <element signature="e#11891#12032#0" expanded="false" />
+                <element signature="e#12061#12097#0" expanded="false" />
+                <element signature="e#12121#12225#0" expanded="false" />
+                <element signature="e#12432#12702#0" expanded="false" />
+                <element signature="e#13036#13184#0" expanded="false" />
+                <element signature="e#13250#13388#0" expanded="false" />
+                <element signature="e#13625#14693#0" expanded="false" />
+                <element signature="e#15055#15385#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testresub.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/test_func/testresub.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="68" />
-              <folding>
-                <element signature="e#19#4247#0" expanded="false" />
-                <element signature="e#4311#8134#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="re.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/python36/Lib/re.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -109,9 +80,10 @@
       <file leaf-file-name="standardization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/other_module/standardization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="96" column="10" lean-forward="false" selection-start-line="96" selection-start-column="10" selection-end-line="96" selection-end-column="10" />
+            <state relative-caret-position="1496">
+              <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
               <folding>
+                <element signature="e#3079#3189#1" expanded="false" />
                 <element signature="e#3218#3658#0" expanded="false" />
                 <element signature="e#3750#3946#0" expanded="false" />
               </folding>
@@ -119,11 +91,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/items.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Push_Data2Mongo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="83" column="45" lean-forward="false" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
+            <state relative-caret-position="612">
+              <caret line="57" column="45" lean-forward="false" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#111#703#0" expanded="false" />
@@ -133,45 +115,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="defer.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/python36/Lib/site-packages/twisted/internet/defer.py">
+      <file leaf-file-name="execjs_cal_as_cp_for_JinRiTouTiao.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/execjs_cal_as_cp_for_JinRiTouTiao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="652" column="0" lean-forward="false" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+            <state relative-caret-position="3230">
+              <caret line="190" column="51" lean-forward="false" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="depth.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/python36/Lib/site-packages/scrapy/spidermiddlewares/depth.py">
+      <file leaf-file-name="getCommentForJinitoutiaoSpeciallyDaily.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/getCommentForJinitoutiaoSpeciallyDaily.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="3162">
+              <caret line="188" column="18" lean-forward="false" selection-start-line="188" selection-start-column="17" selection-end-line="188" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_find_sohu_cmt.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/test_func/test_find_sohu_cmt.py">
+      <file leaf-file-name="changdu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/spiders/changdu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="2924">
+              <caret line="181" column="32" lean-forward="false" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jinritoutiao.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#108#623#0" expanded="false" />
-                <element signature="e#951#1221#0" expanded="false" />
+                <element signature="e#1488#1518#0" expanded="false" />
+                <element signature="e#5860#5934#0" expanded="false" />
+                <element signature="e#13173#13309#0" expanded="false" />
+                <element signature="e#13319#13359#0" expanded="false" />
+                <element signature="e#13844#16241#0" expanded="false" />
+                <element signature="e#16297#16375#0" expanded="false" />
+                <element signature="e#16419#16465#0" expanded="false" />
+                <element signature="e#16935#17002#0" expanded="false" />
+                <element signature="e#17457#17988#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scrapyd_spider_Luncher.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobileapp/scrapyd_spider_Luncher.py">
+      <file leaf-file-name="AdjustCmtNumJinritoutiao.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="92" column="29" lean-forward="false" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
+            <state relative-caret-position="544">
+              <caret line="35" column="83" lean-forward="false" selection-start-line="35" selection-start-column="83" selection-end-line="35" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -221,7 +219,6 @@
         <option value="$PROJECT_DIR$/mobileapp/notice/index.html" />
         <option value="$PROJECT_DIR$/mobileapp/spiders/huanqiu.py" />
         <option value="$PROJECT_DIR$/mobileapp/spiders/test_spider.py" />
-        <option value="$PROJECT_DIR$/mobileapp/items.py" />
         <option value="$PROJECT_DIR$/mobileapp/scrapyd_loader.py" />
         <option value="$PROJECT_DIR$/mobileapp/Push_Data2Service.py" />
         <option value="$PROJECT_DIR$/mobileapp/pipelines.py" />
@@ -233,7 +230,6 @@
         <option value="$PROJECT_DIR$/mobileapp/spiders/changdu.py" />
         <option value="$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/test_xhr_toutiao.py" />
-        <option value="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" />
         <option value="$PROJECT_DIR$/mobileapp/spiders/sina.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/test_jinritoutiao_comment_api_1.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/test_find_board.py" />
@@ -247,7 +243,6 @@
         <option value="$PROJECT_DIR$/mobileapp/test_func/test_func.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/tests_find_sohu.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/tests_find_sohu_article.py" />
-        <option value="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/testtime.py" />
         <option value="$PROJECT_DIR$/mobileapp/other_module/execjs_cal_as_cp_for_JinRiTouTiao.py" />
         <option value="$PROJECT_DIR$/mobileapp/notice/notice.html" />
@@ -258,6 +253,9 @@
         <option value="$PROJECT_DIR$/mobileapp/other_module/standardization.py" />
         <option value="$PROJECT_DIR$/mobileapp/test_func/testresub.py" />
         <option value="$PROJECT_DIR$/mobileapp/spiders/sohu.py" />
+        <option value="$PROJECT_DIR$/mobileapp/items.py" />
+        <option value="$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py" />
+        <option value="$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py" />
       </list>
     </option>
   </component>
@@ -268,8 +266,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="14" />
+    <option name="y" value="10" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -289,7 +287,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -334,14 +332,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="F:/project_python35/GZY/mala_GZY0409" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/项目交接/mobileapp" />
     <property name="SearchEverywhereHistoryKey" value="offsite&#9;null&#9;null&#10;defaultsett&#9;null&#9;null&#10;cookiemid&#9;null&#9;null" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -824,7 +840,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526695010740</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="修改了搜狐的图片无法显示bug">
+      <created>1527499910856</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1527499910856</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -836,7 +859,8 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="14" y="10" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.51492536" order="7" side_tool="true" content_ui="tabs" />
@@ -846,16 +870,17 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3336887" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47939262" sideWeight="0.7089552" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47939262" sideWeight="0.7089552" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -899,7 +924,8 @@
     <MESSAGE value="今日头条的评论数据接口出错了，于是重新调整了一下" />
     <MESSAGE value="早就添加了今日头条的代理模块，今天增加了数据库评论数量自动检擦功能。" />
     <MESSAGE value="临时修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="临时修改" />
+    <MESSAGE value="修改了搜狐的图片无法显示bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了搜狐的图片无法显示bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1086,12 +1112,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py</url>
-          <line>269</line>
+          <line>292</line>
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py</url>
-          <line>389</line>
+          <line>418</line>
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1111,7 +1137,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py</url>
-          <line>128</line>
+          <line>139</line>
           <option name="timeStamp" value="191" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1181,7 +1207,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/spiders/sohu.py</url>
-          <line>402</line>
+          <line>400</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1193,11 +1219,6 @@
           <url>file://$PROJECT_DIR$/mobileapp/test_func/test_find_sohu_cmt.py</url>
           <line>45</line>
           <option name="timeStamp" value="234" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mobileapp/other_module/standardization.py</url>
-          <line>96</line>
-          <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileapp/other_module/standardization.py</url>
@@ -1223,13 +1244,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/python36/Lib/site-packages/requests/adapters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="507" column="0" lean-forward="false" selection-start-line="507" selection-start-column="0" selection-end-line="507" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/python36/Lib/site-packages/scrapy/core/engine.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1295,26 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding>
-            <element signature="e#1137#1167#0" expanded="false" />
-            <element signature="e#5199#7226#0" expanded="false" />
-            <element signature="e#5297#5371#0" expanded="false" />
-            <element signature="e#7282#12051#0" expanded="false" />
-            <element signature="e#12199#12335#0" expanded="false" />
-            <element signature="e#12345#12385#0" expanded="false" />
-            <element signature="e#12870#15267#0" expanded="false" />
-            <element signature="e#15323#15401#0" expanded="false" />
-            <element signature="e#15445#15491#0" expanded="false" />
-            <element signature="e#15961#16028#0" expanded="false" />
-            <element signature="e#17813#17981#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/lunch_jinritoutiao.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -1333,13 +1327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/spiders/changdu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="217" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="251" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1394,20 +1381,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/other_module/AdjustJRTTCmtNum.txt" />
     <entry file="file://$PROJECT_DIR$/mobileapp/test_func/AdjustJRTTCmtNum.txt" />
-    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/execjs_cal_as_cp_for_JinRiTouTiao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2241">
-          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/getCommentForJinitoutiaoSpeciallyDaily.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/test_func/testtime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1430,24 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2550">
           <caret line="217" column="61" lean-forward="false" selection-start-line="217" selection-start-column="61" selection-end-line="217" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1502,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1518,9 +1472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1528,15 +1479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="95" column="18" lean-forward="false" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-            <element signature="e#164#1360#0" expanded="false" />
-            <element signature="e#1378#1381#0" expanded="false" />
-            <element signature="e#2798#4021#0" expanded="false" />
-            <element signature="e#4039#5262#0" expanded="false" />
-            <element signature="e#5280#6504#0" expanded="false" />
-            <element signature="e#6522#7688#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1544,7 +1486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1560,7 +1501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1568,7 +1508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-665">
           <caret line="671" column="0" lean-forward="false" selection-start-line="671" selection-start-column="0" selection-end-line="671" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1582,17 +1521,8 @@
     </entry>
     <entry file="file://D:/python36/Lib/site-packages/scrapy/spidermiddlewares/depth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
+        <state relative-caret-position="935">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1610,40 +1540,15 @@
     </entry>
     <entry file="file://D:/python36/Lib/site-packages/twisted/internet/defer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
+        <state relative-caret-position="10846">
           <caret line="652" column="0" lean-forward="false" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="83" column="45" lean-forward="false" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#111#703#0" expanded="false" />
-            <element signature="e#1677#1910#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/standardization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="96" column="10" lean-forward="false" selection-start-line="96" selection-start-column="10" selection-end-line="96" selection-end-column="10" />
-          <folding>
-            <element signature="e#3218#3658#0" expanded="false" />
-            <element signature="e#3750#3946#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://D:/python36/Lib/re.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
+        <state relative-caret-position="3179">
           <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1658,10 +1563,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/spiders/sohu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="402" column="33" lean-forward="true" selection-start-line="402" selection-start-column="33" selection-end-line="402" selection-end-column="33" />
+        <state relative-caret-position="1938">
+          <caret line="399" column="37" lean-forward="false" selection-start-line="399" selection-start-column="26" selection-end-line="399" selection-end-column="37" />
           <folding>
             <element signature="e#20#53#0" expanded="true" />
             <element signature="e#1606#3160#0" expanded="false" />
@@ -1672,11 +1584,105 @@
             <element signature="e#6084#6775#0" expanded="false" />
             <element signature="e#9432#10957#0" expanded="false" />
             <element signature="e#11012#11218#0" expanded="false" />
+            <element signature="e#11276#11820#0" expanded="false" />
             <element signature="e#11354#11546#0" expanded="false" />
-            <element signature="e#12062#12098#0" expanded="false" />
-            <element signature="e#12433#12703#0" expanded="false" />
-            <element signature="e#13627#14695#0" expanded="false" />
-            <element signature="e#15057#15327#0" expanded="false" />
+            <element signature="e#11891#12032#0" expanded="false" />
+            <element signature="e#12061#12097#0" expanded="false" />
+            <element signature="e#12121#12225#0" expanded="false" />
+            <element signature="e#12432#12702#0" expanded="false" />
+            <element signature="e#13036#13184#0" expanded="false" />
+            <element signature="e#13250#13388#0" expanded="false" />
+            <element signature="e#13625#14693#0" expanded="false" />
+            <element signature="e#15055#15385#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/AdjustCmtNumJinritoutiao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="35" column="83" lean-forward="false" selection-start-line="35" selection-start-column="83" selection-end-line="35" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/execjs_cal_as_cp_for_JinRiTouTiao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3230">
+          <caret line="190" column="51" lean-forward="false" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/getCommentForJinitoutiaoSpeciallyDaily.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3162">
+          <caret line="188" column="18" lean-forward="false" selection-start-line="188" selection-start-column="17" selection-end-line="188" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/spiders/changdu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2924">
+          <caret line="181" column="32" lean-forward="false" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/Push_Data2Mongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="57" column="45" lean-forward="false" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#111#703#0" expanded="false" />
+            <element signature="e#1677#1910#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/spiders/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/other_module/standardization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+          <folding>
+            <element signature="e#3079#3189#1" expanded="false" />
+            <element signature="e#3218#3658#0" expanded="false" />
+            <element signature="e#3750#3946#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/spiders/jinritoutiao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
+          <folding>
+            <element signature="e#1488#1518#0" expanded="false" />
+            <element signature="e#5860#5934#0" expanded="false" />
+            <element signature="e#13173#13309#0" expanded="false" />
+            <element signature="e#13319#13359#0" expanded="false" />
+            <element signature="e#13844#16241#0" expanded="false" />
+            <element signature="e#16297#16375#0" expanded="false" />
+            <element signature="e#16419#16465#0" expanded="false" />
+            <element signature="e#16935#17002#0" expanded="false" />
+            <element signature="e#17457#17988#0" expanded="false" />
           </folding>
         </state>
       </provider>

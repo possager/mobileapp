@@ -15,7 +15,10 @@ from mobileapp.other_module.execjs_cal_as_cp_for_JinRiTouTiao import caculate_as
 
 
 class jinritoutiao(Spider):
-    name = 'jinritoutiao'
+    '''
+    继承spider，最基本的spider
+    '''
+    name = 'jinritoutiao'#爬虫的唯一定位识别字段
 
 
 
@@ -27,7 +30,7 @@ class jinritoutiao(Spider):
         'Accept-Language':'zh-CN,zh;q=0.9',
         'Accept-Encoding':'gzip, deflate, br',
         'Accept':'*/*'
-    }
+    }#浏览器headers，有时候抓取的数据来自移动web网站，会用到，每个爬虫都有一个，不一定都会用到，mobile_app_headers也一样。
     mobile_app_headers={
         'User-Agent': 'oneplus_a3010_android',
         'Host': 'app.thepaper.cn',
@@ -35,10 +38,18 @@ class jinritoutiao(Spider):
         'Content-Type': 'application/x-www-form-urlencoded',
         'Connection': 'Keep-Alive',
         'WDAccept-Encoding': 'gzip,deflate',
-    }
+    }#app的headers，
 
 
     def start_requests(self):
+        '''
+        这个函数是scrapy的默认起始函数，最开始的链接是从这里发起的，所有爬虫的start_requests都是执行从数据库读取板块配置信息，之后发
+        起板块index获取请求，然后交给下一个处理函数。
+
+        注释掉的代码是开发、测试的时候用的，可以不链接数据库。
+
+        :return: requests，继续请求具体的文章
+        '''
 
         # def get_request_for_debug():
         #     task_list=[
@@ -142,7 +153,13 @@ class jinritoutiao(Spider):
 
 
     def deal_board(self,response):
-        metadata=response.meta['pre_data']
+        '''
+        处理板块信息，解析出具体文章的链接，再来访问文章。
+        :param response: 从前边传输过来的response，app的板块信息
+        :return: 某一个文章的url
+        '''
+        metadata=response.meta['pre_data']#每次上次函数中抓取到的数据都回通过requests中的meta字段传到下一个函数中去，
+        #所以第一步是先将上个函数抓取到的数据拿出来。
 
 
         def deal_publish_time(publish_time_raw):
@@ -157,7 +174,7 @@ class jinritoutiao(Spider):
 
 
         for one_article in board_reponse_json['data']:
-            metadata_in_for=copy.copy(metadata)
+            metadata_in_for=copy.copy(metadata)#每次要copy一份，用copy的，不然数据要乱！
 
             title=one_article['title']
             url=one_article['display_url']
@@ -206,13 +223,19 @@ class jinritoutiao(Spider):
 
 
     def deal_content(self,response):
-        metadata=response.meta['pre_data']
+        '''
+        处理文章信息
+
+        :param response: 具体一个文章的response
+        :return: 发起评论的请求，这里的get的参数是以字段的形式放在请求中的，而不是一个url链接，所以下边会有一些请求字典。也可以放在url链接，随意。
+        '''
+        metadata=response.meta['pre_data']#上个函数的结果数据
         metadata['reply_nodes']=[]
 
 
         def deal_comment_url(item_id):
             time_str = str(int(time.time() * 1000))
-            url1_dict = {
+            url1_dict = {#这个是发起评论请求时所需字段
                 'group_id': item_id,
                 'item_id': item_id,
                 'aggr_type': '1',
@@ -320,6 +343,12 @@ class jinritoutiao(Spider):
 
 
     def deal_comments(self,response):
+        '''
+        处理评论信息，如果没有评论了，就返回已经抓取到的数据，一个标准的数据，评论还在reply_nodes中。否则返回的是更多评论的请求，已经抓取到的数据放在这个请求的meta字段中。
+
+        :param response:包含评论的response
+        :return: requests或者item
+        '''
         metadata=response.meta['pre_data']
 
 

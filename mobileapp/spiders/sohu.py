@@ -311,7 +311,6 @@ class sohu(Spider):
             content_raw=datajson['content']
             img_urls=deal_img_urls(datajson['photos'])
             content=deal_content(content_raw,img_urls)
-
         except:
             content=None
             img_urls=[]
@@ -354,7 +353,6 @@ class sohu(Spider):
 
             return comment_data
 
-
         datajson=json.loads(response.text)
         if 'response' in datajson.keys():
             if 'commentList' in datajson['response'].keys():
@@ -394,10 +392,10 @@ class sohu(Spider):
             comment_next_params=deal_comment_params_next(response.meta['formdata'])
             url_comment='https://api.k.sohu.com/api/comment/getCommentListByCursor.go'
             headers={
-    'Connection':'close',
-    'Accept':'*/*',
-    'X-Requested-With':'XMLHttpRequest',
-    'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G9350 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36 JsKit/1.0 (Android);',
-}
+                'Connection':'close',
+                'Accept':'*/*',
+                'X-Requested-With':'XMLHttpRequest',
+                'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G9350 Build/LMY48Z) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36 JsKit/1.0 (Android);',
+            }
             return scrapy.FormRequest(method='GET',url=url_comment,headers=headers,meta={'pre_data':metadata,'formdata':comment_next_params},callback=self.deal_comments,formdata=comment_next_params)
         return standard(metadata)
